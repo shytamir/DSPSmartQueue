@@ -1,6 +1,6 @@
 {
   "name": "DSPSmartQueue",
-  "version_number": "0.9.0",
+  "version_number": "1.0.0",
   "website_url": "https://github.com/shytamir/DSPSmartQueue",
   "description": "Your requests, minus the clutter. Hide automatically queued intermediates so you can spot, select, and cancel the products you actually asked for—all in the familiar Replicator queue.",
   "dependencies": [
