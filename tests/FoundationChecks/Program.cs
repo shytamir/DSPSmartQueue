@@ -2,6 +2,7 @@ using System.Reflection;
 using DSPSmartQueue;
 
 if (args.Length != 3) throw new ArgumentException("Expected ManagedPath, DependencyPath, and plugin DLL path.");
+VisibleRequestsChecks.Run();
 var errors = new List<string>();
 BindingChecks.RequireField(errors, typeof(Fixture), "Value", typeof(int), false);
 BindingChecks.RequireMethod(errors, typeof(Fixture), "Click", typeof(void), true, new[] { typeof(int) });

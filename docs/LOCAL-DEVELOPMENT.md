@@ -45,7 +45,7 @@ The initial install encountered sandbox NuGet TLS authentication failure; the sa
 command succeeded in the desktop context. No certificate validation bypass was
 used. Normal activation and static inspection subsequently succeeded in the sandbox.
 
-## Build and check the foundation
+## Build and run offline checks
 
 ```powershell
 ./scripts/Build-Local.ps1
@@ -63,6 +63,7 @@ If the desktop sandbox denies SDK discovery or NuGet authentication, run the sam
 command in the approved desktop context; do not bypass certificate checks.
 
 Output is `artifacts/build/DSPSmartQueue.dll`. The command rejects missing
-references, unexpected output files, or failed signature/metadata checks. It never
+references, unexpected output files, or failed signature/metadata/mapping checks. It never
 installs or runs the plugin. See [SQ-1.1 evidence](implementation/SQ-1.1.md) for the
-recorded verification; consult PROJECT.md for current delivery readiness.
+recorded foundation verification and [SQ-1.2 evidence](implementation/SQ-1.2.md)
+for mapping checks; consult PROJECT.md for current delivery readiness.

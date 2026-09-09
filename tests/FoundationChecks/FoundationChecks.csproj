@@ -8,5 +8,6 @@
   <ItemGroup>
     <PackageReference Include="System.Reflection.MetadataLoadContext" Version="10.0.0" />
     <Compile Include="../../src/DSPSmartQueue/BindingChecks.cs" Link="Product/BindingChecks.cs" />
+    <Compile Include="../../src/DSPSmartQueue/VisibleRequests.cs" Link="Product/VisibleRequests.cs" />
   </ItemGroup>
 </Project>

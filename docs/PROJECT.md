@@ -12,27 +12,28 @@ instructions take precedence.
 ## Current phase
 
 Planning is complete. The two-epic, seven-story roadmap is approved for the first
-prototype delivery. SQ-1.1 has met its definition of done. Work stopped at that
-story's boundary; SQ-1.2 is the next planned work and has not been started.
+prototype delivery. SQ-1.2 has met its definition of done. Work stopped at that
+story's boundary; SQ-1.3 is the next planned work and has not been started.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
 checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
-The minimal foundation compiles and its offline binding checks pass. No queue
-adapter behavior or live feasibility validation has been completed. The GitHub
+The foundation and read-only request mapping compile; offline binding and mapping
+checks pass. No UI/input integration or live feasibility validation has been
+completed. The GitHub
 workflow still produces an incomplete scaffold artifact, not an installable package.
 
 ## Work tracking
 
 | Epic | Status |
 | --- | --- |
-| SQ-1: Safe integrated queue adapter | In progress; foundation complete |
+| SQ-1: Safe integrated queue adapter | In progress; foundation and mapping complete |
 | SQ-2: Identified prototype delivery and feasibility | Planned |
 
 | Story | Status | Completion evidence |
 | --- | --- | --- |
 | [SQ-1.1](management/ROADMAP.md#sq-11--minimal-plugin-foundation) | Complete | [Compilation, metadata and negative checks](implementation/SQ-1.1.md) |
-| [SQ-1.2](management/ROADMAP.md#sq-12--identify-visible-requests) | Planned | None yet |
+| [SQ-1.2](management/ROADMAP.md#sq-12--identify-visible-requests) | Complete | [Read-only mapping and focused checks](implementation/SQ-1.2.md) |
 | [SQ-1.3](management/ROADMAP.md#sq-13--present-and-operate-the-same-task) | Planned | None yet |
 | [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Planned | None yet |
 | [SQ-2.1](management/ROADMAP.md#sq-21--repeatable-identified-prototype-build) | Planned | None yet |
