@@ -45,23 +45,18 @@ Consult PROJECT.md for acceptance and release readiness.
 
 ## Versioning and package artifacts
 
-`.github/workflows/build.yml` runs offline checks on pushes to `main` and manual
-dispatch. Release packages are built locally against the selected real references:
+The [Build release package workflow](https://github.com/shytamir/DSPSmartQueue/actions/workflows/build.yml)
+compiles, checks, and packages each push to `main`; it also supports manual dispatch.
+Download the `DSPSmartQueue-<version>` artifact from a successful run and extract
+its contained release ZIP for Thunderstore. The separate `build-evidence` artifact
+is for maintainers and is not part of the public package.
 
-```powershell
-./scripts/New-Package.ps1 -BuildNumber 0
-```
-
-VERSION supplies major/minor components; the build number supplies patch (CI uses
-its run number). The command requires committed source, runs the build/checks, and
-writes an inspected public ZIP under `artifacts/package/`. Build and inspection
-records are kept alongside it, outside the ZIP.
-Its filename includes version, source revision, and a hash prefix. See
-[local development](docs/LOCAL-DEVELOPMENT.md) for prerequisites and
-[owner procedure](docs/OWNER-PROCEDURE.md) for private evaluation.
-
-Consult PROJECT.md for the exact handoff and acceptance state. Repository pushes
-and local packaging do not publish releases or install anything.
+VERSION supplies major/minor components; the release workflow uses patch zero.
+The ZIP filename includes version, source revision, and a hash prefix. Hosted builds
+use pinned public dependencies and minimal compile-only game/UI declarations;
+none of those references are shipped. See [local development](docs/LOCAL-DEVELOPMENT.md)
+for real-reference validation and [PROJECT.md](docs/PROJECT.md) for release readiness.
+Repository pushes do not publish releases or install anything.
 
 ## License
 

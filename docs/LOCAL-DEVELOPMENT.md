@@ -74,22 +74,37 @@ references, unexpected output files, or failed binding, metadata, mapping, input
 recovery, or lifecycle checks. It never installs or runs the plugin. Recorded
 verification evidence is linked from PROJECT.md.
 
-Hosted CI uses the same offline logic and binding fixtures without game files:
+## Hosted build and reference validation
+
+GitHub Actions runs `./scripts/New-Package.ps1 -Hosted -BuildNumber 0`, then
+`./tests/PackageChecks.ps1` against the resulting ZIP before uploading it.
+`Initialize-CIReferences.ps1` downloads checksum-pinned BepInEx 5.4.17 and public
+Unity 2022.3.62 modules. `build/References` supplies only the game and Unity UI
+signatures used by the plugin and binding checks. Shim methods throw; these are
+compile references, not an emulated game, and must never be shipped or executed.
+Build evidence explicitly identifies the selected reference mode.
+
+After changing referenced APIs, validate hosted declarations against the selected
+real local references with `./tests/ReferenceParity.ps1`. It builds both ways,
+runs the respective checks, and requires byte-identical plugin DLLs. A mismatch
+requires investigation, not updating an expected hash. Neither path runs the game.
+Offline checks alone remain available with:
 
 ```powershell
 dotnet run --project tests/FoundationChecks -c Release -- --logic-only
 ```
 
-This mode does not compile the plugin or verify real-reference metadata, Harmony
-execution, or Unity rendering. CI runs those offline checks.
-`scripts/Get-BuildVersion.ps1` supplies the same version rule to the local
-build, package, and CI workflow; it rejects values outside assembly-version limits.
-
 ## Release package
 
-From a clean committed checkout, run `./scripts/New-Package.ps1` with the same
-reference and BuildNumber parameters as Build-Local. It builds against real
-references and inspects the actual ZIP before naming the release artifact.
+Download `DSPSmartQueue-<version>` from the successful GitHub Actions run identified
+in PROJECT.md. Extract the release ZIP from GitHub's artifact download wrapper;
+that inner ZIP is the Thunderstore upload. Keep the separate `build-evidence`
+artifact for verification. The workflow uses VERSION major/minor and patch zero.
+
+For local development, `./scripts/New-Package.ps1` builds against real references;
+`-Hosted` exercises the CI path. Both require a clean committed checkout and inspect
+the actual ZIP before naming it. Local output is for verification; release delivery
+comes from GitHub Actions.
 
 The public ZIP contains exactly:
 
@@ -117,4 +132,4 @@ Changed package documents or templates are rejected. Windows PowerShell 7 and
 System.Drawing decode the PNG; the inspector does not execute the plugin.
 The package follows [Thunderstore's package rules](https://wiki.thunderstore.io/mods/creating-a-package)
 and [BepInEx folder routing](https://wiki.thunderstore.io/mods/packaging-your-mods).
-CI runs offline checks only; package checks require the local real-reference build.
+CI runs compilation, offline metadata/logic checks, ZIP inspection, and package regression checks.

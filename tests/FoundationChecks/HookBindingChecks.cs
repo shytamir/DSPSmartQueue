@@ -50,6 +50,6 @@ internal static class HookBindingChecks
                 throw new Exception("Prefix/finalizer state types disagree.");
             if (finalizer.ReturnType.FullName != "System.Exception") throw new Exception("Finalizer must preserve native exceptions.");
         }
-        Console.WriteLine("PASS: Harmony hook native argument/field injection and prefix/finalizer state signatures against real metadata.");
+        Console.WriteLine("PASS: Harmony hook native argument/field injection and prefix/finalizer state signatures against supplied reference metadata.");
     }
 }

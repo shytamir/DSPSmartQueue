@@ -1,6 +1,6 @@
 #requires -Version 7.0
 [CmdletBinding()]
-param([string]$ManagedPath, [string]$DependencyPath, [string]$BuildNumber = '0')
+param([string]$ManagedPath, [string]$DependencyPath, [string]$BuildNumber = '0', [switch]$Hosted)
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 $output = Join-Path $repo 'artifacts/build'
@@ -46,6 +46,11 @@ try {
         $unexpected = @(Get-ChildItem -LiteralPath $output -Force)
         if ($unexpected.Count) { throw "Unexpected deliverable content: $($unexpected.Name -join ', ')" }
     }
+    if ($Hosted) {
+        & "$PSScriptRoot/Initialize-CIReferences.ps1"
+        $ManagedPath = Join-Path $repo 'artifacts/ci-references/managed'
+        $DependencyPath = Join-Path $repo 'artifacts/ci-references/dependencies'
+    }
     $configPath = Join-Path $repo 'artifacts/.runtime-tools/local.json'
     if (Test-Path -LiteralPath $configPath) {
         $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
@@ -88,7 +93,8 @@ try {
         source = $source
         references = $references
         sdk = (& dotnet --version)
-        checks = @('real-reference compilation', 'offline logic', 'real metadata and hook signatures')
+        referenceMode = $(if ($Hosted) { 'hosted shims' } else { 'real game assemblies' })
+        checks = @('compilation', 'offline logic', 'reference metadata and hook signatures')
         runtimeValidated = $false
         output = [ordered]@{ name = 'DSPSmartQueue.dll'; sha256 = (Get-FileHash -LiteralPath $candidate -Algorithm SHA256).Hash }
     }

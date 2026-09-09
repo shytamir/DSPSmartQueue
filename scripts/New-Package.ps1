@@ -1,6 +1,6 @@
 #requires -Version 7.0
 [CmdletBinding()]
-param([string]$ManagedPath, [string]$DependencyPath, [string]$BuildNumber = '0')
+param([string]$ManagedPath, [string]$DependencyPath, [string]$BuildNumber = '0', [switch]$Hosted)
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 $output = Join-Path $repo 'artifacts/package'
@@ -8,10 +8,10 @@ New-Item -ItemType Directory -Force $output | Out-Null
 $temp = Join-Path $output 'package.pending.zip'
 try {
     if (Test-Path -LiteralPath $temp) { Remove-Item -LiteralPath $temp }
-    & "$PSScriptRoot/Build-Local.ps1" -ManagedPath $ManagedPath -DependencyPath $DependencyPath -BuildNumber $BuildNumber
+    & "$PSScriptRoot/Build-Local.ps1" -ManagedPath $ManagedPath -DependencyPath $DependencyPath -BuildNumber $BuildNumber -Hosted:$Hosted
     $buildDirectory = Join-Path $repo 'artifacts/build'
     $build = Get-Content -LiteralPath (Join-Path $buildDirectory 'build.json') -Raw | ConvertFrom-Json
-    if ($build.source.dirty) { throw 'Commit source and documentation before producing an release package.' }
+    if ($build.source.dirty) { throw 'Commit source and documentation before producing a release package.' }
     $manifest = Get-Content (Join-Path $repo 'packaging/manifest.json') -Raw | ConvertFrom-Json
     $manifest.version_number = $build.version
     $zip = [IO.Compression.ZipFile]::Open($temp, [IO.Compression.ZipArchiveMode]::Create)

@@ -68,7 +68,7 @@ if (!Equals(attribute.ConstructorArguments[0].Value, entry.GetField("PluginGuid"
     throw new Exception("Plugin metadata/version mismatch.");
 if (AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name is "Assembly-CSharp" or "DSPSmartQueue"))
     throw new Exception("Game or plugin loaded into execution context.");
-Console.WriteLine("PASS: valid fixture, 13 invalid member cases, missing type, real metadata signatures, plugin identity/version; no game/plugin execution load.");
+Console.WriteLine("PASS: valid fixture, 13 invalid member cases, missing type, supplied reference metadata signatures, plugin identity/version; no game/plugin execution load.");
 
 class Fixture
 {

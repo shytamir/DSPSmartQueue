@@ -59,6 +59,7 @@ Check status before edits, preserve unrelated changes, and stage reviewed named
 paths only. Commit and push when requested; do not force-push. For sandbox ownership
 errors, use per-command `git -c safe.directory=<repo>` rather than global changes.
 
-`VERSION` contains manually edited `MAJOR` and `MINOR` integers; the workflow
-appends the GitHub run number as patch version. Consult `docs/PROJECT.md` for
+`VERSION` contains manually edited `MAJOR` and `MINOR` integers; the release workflow
+uses patch zero. Hosted references are compile-only and must never enter a package.
+Consult `docs/PROJECT.md` for
 package readiness. Repository pushes do not authorize release publication.

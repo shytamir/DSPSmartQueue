@@ -1,4 +1,4 @@
-name: Offline checks
+name: Build release package
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  offline-checks:
+  build-package:
     runs-on: windows-latest
     steps:
       - name: Check out source
@@ -18,11 +18,36 @@ jobs:
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: '10.0.302'
-      - name: Run offline checks
+      - name: Build and validate public package
+        id: package
         shell: pwsh
         run: |
-          $version = ./scripts/Get-BuildVersion.ps1 -BuildNumber $env:GITHUB_RUN_NUMBER
-          dotnet run --project tests/FoundationChecks -c Release -- --logic-only
-          if ($LASTEXITCODE) { throw 'Offline checks failed.' }
-          'Offline logic and binding fixtures passed. No plugin compilation, real-reference checks, Harmony execution, or Unity rendering.' >> $env:GITHUB_STEP_SUMMARY
-          "Version: $version. Release packages require the local real-reference build." >> $env:GITHUB_STEP_SUMMARY
+          if ((git rev-parse HEAD).Trim() -ne $env:GITHUB_SHA) { throw 'Unexpected source revision.' }
+          ./scripts/New-Package.ps1 -Hosted -BuildNumber 0
+          $packages = @(Get-ChildItem artifacts/package -Filter '*.zip')
+          if ($packages.Count -ne 1) { throw 'Expected exactly one release ZIP.' }
+          $package = $packages[0].FullName
+          ./tests/PackageChecks.ps1 -Path $package
+          $inspection = Get-Content "$package.inspection.json" -Raw | ConvertFrom-Json
+          "path=$package" >> $env:GITHUB_OUTPUT
+          "version=$($inspection.version)" >> $env:GITHUB_OUTPUT
+          "### Validated public package $($inspection.version)" >> $env:GITHUB_STEP_SUMMARY
+          "Source: $env:GITHUB_SHA" >> $env:GITHUB_STEP_SUMMARY
+          "ZIP SHA256: $($inspection.sha256)" >> $env:GITHUB_STEP_SUMMARY
+          'Compilation uses public dependencies and compile-only game/UI shims. Offline logic, metadata, package contents, and rejection tests passed. No game execution or runtime compatibility claim.' >> $env:GITHUB_STEP_SUMMARY
+      - name: Upload public package
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: DSPSmartQueue-${{ steps.package.outputs.version }}
+          path: ${{ steps.package.outputs.path }}
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload maintainer evidence separately
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: build-evidence
+          path: |
+            artifacts/package/*.build.json
+            artifacts/package/*.inspection.json
+          if-no-files-found: error
+          retention-days: 30
