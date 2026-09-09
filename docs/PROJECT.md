@@ -26,7 +26,17 @@ acceptance or moderator approval has been reported for this correction.
 
 Local validation of 1.0.1 passed: zero-warning hosted and real-reference builds,
 offline queue/hook/identity checks, and byte-identical DLLs across both builds.
-GitHub Actions artifact verification is pending. Delivery remains a GitHub Actions
+[CI run 34315112469](https://github.com/shytamir/DSPSmartQueue/actions/runs/34315112469)
+passed compilation, offline checks, ZIP inspection, and package rejection tests.
+The downloaded `DSPSmartQueue-1.0.1` artifact was independently inspected: exactly
+five public files, no `BindingChecks` in the DLL, and a DLL identical to the local
+real-reference build. Real-game metadata checks also passed for the CI DLL.
+
+- ZIP: `DSPSmartQueue-1.0.1-6ba698bb5ac0-4579573F7F9C.zip`.
+- ZIP SHA256: `4579573F7F9C8363432BF9B05AF22CE41BE724F39C17CC5CA941A8C5F22B8F78`.
+- DLL SHA256: `4FA5F7BF4600D41731103D61D3CC46132E26A20C9C4C7F3DBB89F49D958E5551`.
+
+Download the artifact from that run and extract its contained release ZIP. Delivery remains a GitHub Actions
 artifact; agents do not install the plugin, run the game, or publish to Thunderstore.
 The public ZIP contains exactly manifest, player README, icon, license, and plugin
 DLL. Build evidence is uploaded separately. Shims and internal documents are excluded.
