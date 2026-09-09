@@ -60,14 +60,14 @@ Preserve DSP's quantity convention: for a single-output recipe, display remainin
 
 Build one plugin with a small visible-slot mapping and narrow hooks into the queue UI. Keep filtering and identity checks testable independently of Unity. Cache required bindings and reuse presentation storage.
 
-The initial integration candidates are:
+The initial integration candidates were:
 
 | Method | Intended use |
 | --- | --- |
 | `UIReplicatorWindow.SetBufferData()` | Reconcile queue icons, quantities, count, and hover before the native buffer upload. Preserve recipe buffers and timing. |
 | `UIReplicatorWindow.OnQueueMouseDown(BaseEventData)` | Resolve the displayed task, translate the input index for the original handler, and restore the UI index on both normal and exceptional exits. |
 
-Static inspection establishes these methods as candidate boundaries. The prototype must confirm that they preserve the complete display and interaction contract. An appended click listener is insufficient because the native raw-index action could already have executed.
+Static inspection identified these methods as candidate boundaries. Hook changes must preserve the complete display and interaction contract; validation and acceptance are recorded in PROJECT.md. An appended click listener is insufficient because the native raw-index action could already have executed.
 
 Read the forge queue without replacing or modifying its list, task objects, or parent links. Player-requested cancellation runs through the original handler. No mod-owned queue history or save data is required.
 

@@ -23,7 +23,7 @@ steering records concise. Readiness does not establish completion or acceptance.
   or uncertain clicks; valid input reaches the original handler exactly once.
 - Enable and disable presentation and input together. Restore a consistent native
   view on failure, clear mappings at session changes, and remove hooks on shutdown.
-- Treat kickoff hook locations as candidates requiring prototype validation.
+- Revalidate hook changes against the selected references and the product contract.
 
 ## Local work
 

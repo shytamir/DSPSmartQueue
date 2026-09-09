@@ -14,7 +14,7 @@ instructions take precedence.
 The two-epic, seven-story prototype delivery is complete. The owner accepted the
 identified handoff after passing all live observations and cleanup. No planned
 stories remain open. Version 0.9 is the release candidate following the owner's
-pre-release instruction. The replacement icon is pending from the owner.
+pre-release instruction. The owner-supplied release icon has been added unchanged.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
@@ -39,9 +39,11 @@ package version 0.9.0; a supplied build number replaces the patch component).
   probes rejected extra/missing/duplicate entries, altered DLL/icon/version, and
   dirty build evidence. Runtime source, tests, and build scripts were unchanged
   from the accepted prototype.
-- The existing icon remains unchanged and is not the owner's final release artwork.
-  Its replacement and release publication are outstanding; no publication was
-  performed or authorized by release-candidate designation.
+- The owner-supplied icon replaced the placeholder. Its PNG format and 256x256
+  dimensions were verified; the original file was copied unchanged.
+- The management pass removed obsolete hook-validation wording. PROJECT.md remains
+  the sole current status record; dated prototype evidence and acceptance retain
+  their original scope. Release publication remains a separate owner decision.
 
 The acceptance below belongs to the identified 0.1.0 prototype. It is preserved
 as evidence rather than relabeled as a live test of a newly versioned DLL. Each
