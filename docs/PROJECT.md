@@ -33,7 +33,14 @@ The owner requires GitHub Actions to build and validate the publication ZIP.
 Local ZIPs are no longer publication handoffs. The workflow builds 1.0.0 using
 pinned public dependencies and minimal compile-only game/UI declarations, runs
 logic/metadata checks and package rejection tests, and uploads the package and
-evidence separately. Hosted artifact validation is pending the first updated run.
+evidence separately. [GitHub Actions run 34313606162](https://github.com/shytamir/DSPSmartQueue/actions/runs/34313606162)
+passed and produced the validated `DSPSmartQueue-1.0.0` artifact. Its release ZIP is
+`DSPSmartQueue-1.0.0-82c74e7a8045-644D0A72FEB9.zip`, SHA256
+`644D0A72FEB93AAA907F93EDBE388F1B739B6FB156D8B9552CE201C67925592F`.
+The downloaded CI ZIP passed independent inspection and all nine rejection tests
+from a clean matching checkout. Its DLL matched the real-reference build below
+and passed metadata checks against the actual game assemblies. Download this
+artifact from the run; extract the contained release ZIP for Thunderstore upload.
 
 On 2026-09-09, the hosted-reference and real-reference paths both compiled with
 zero warnings/errors and passed their offline checks. Their DLLs were byte-identical
