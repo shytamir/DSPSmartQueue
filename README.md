@@ -1,11 +1,11 @@
 # DSPSmartQueue
 
-A planned minimal BepInEx mod for Dyson Sphere Program, distributed as a
+A minimal BepInEx mod design for Dyson Sphere Program, intended for distribution as a
 Thunderstore package. It makes the Replicator queue easier to control by showing
 the products the player requested and hiding automatically queued intermediates.
 
-**Status: initial repository buildup, before the first planning session. No plugin
-or installable package exists yet.**
+See [PROJECT.md](docs/PROJECT.md), the authoritative record of project status,
+active work, and delivery readiness.
 
 ## Intended behavior
 
@@ -34,24 +34,25 @@ slots, separate panels, and mod-owned save data are outside scope.
 ## Project records
 
 - [Kickoff](docs/KICKOFF.md): complete intended behavior and prototype acceptance contract.
-- [Project steering](docs/PROJECT.md): current phase and authority boundaries.
-- [Roadmap](docs/management/ROADMAP.md): placeholder pending planning.
+- [Roadmap](docs/management/ROADMAP.md): epic/story scope and completion criteria.
 - [Agent instructions](AGENTS.md): repository working conventions.
+- [Local development](docs/LOCAL-DEVELOPMENT.md): toolkit activation and cached inspection.
+- [Reference baseline](docs/REFERENCE-BASELINE.md): static findings for planning.
 
 The intended first delivery is a prototype DLL and a concise owner feasibility
 procedure. Agents perform compilation and deterministic checks; the owner performs
 installation and in-game validation. Feasibility and publication remain separate.
 
-## Packaging scaffold
+## Versioning and package artifacts
 
 `.github/workflows/build.yml` runs on pushes to `main` and manual dispatch. It reads
-`MAJOR=0` and `MINOR=1` from `VERSION` and appends the workflow run number, producing
-a `0.1.<run>` scaffold ZIP as a GitHub Actions artifact.
+the manually edited `MAJOR` and `MINOR` from `VERSION` and appends the workflow run
+number as patch version.
 
-The ZIP contains draft manifest metadata, this README, the license, and a notice
-listing unfinished package work. It lacks a plugin DLL and icon and is not an
-installable or publishable Thunderstore package. Compilation, package validation,
-final artwork, and publication are not implemented yet.
+The initial scaffold produced a ZIP containing draft manifest metadata, this README,
+the license, and an incomplete-package notice. It did not build a DLL or provide an
+icon. Artifact production alone does not establish installation or release readiness;
+consult the authoritative project status before using a build.
 
 ## License
 

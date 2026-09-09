@@ -3,15 +3,16 @@
 ## Read first
 
 Read this file and `docs/PROJECT.md` before making changes. Use `docs/KICKOFF.md`
-for the product contract and `docs/management/ROADMAP.md` for planning status.
+for the product contract and `docs/management/ROADMAP.md` for work definitions.
+`docs/PROJECT.md` is the sole authority for current phase, story status, readiness,
+and acceptance. Update status there only; other documents link to it.
 Current owner instructions take precedence. Reference repositories and archives
 are examples, not authority.
 
 ## Scope and product boundaries
 
-The repository is in initial buildup before its first planning session. Scaffolding
-does not authorize implementation or release. Keep the roadmap a placeholder until
-planning occurs and keep steering records concise.
+Follow the active scope in `docs/PROJECT.md` and the roadmap's exclusions. Keep
+steering records concise. Readiness does not establish completion or acceptance.
 
 - Build a small BepInEx presentation adapter for the existing 14-slot queue strip.
 - Preserve the native queue, crafting, countdown, and executing-task progress.
@@ -42,6 +43,10 @@ agent-only tools in ignored `artifacts/.runtime-tools/` or a project-specific
 directory in the shared untracked resource area. Add reusable build/check commands
 as needed. Introduce a Unity project or extra toolchain only for a concrete need.
 
+Start local inspection sessions with `. ./scripts/Enter-LocalTools.ps1`. See
+`docs/LOCAL-DEVELOPMENT.md` for initial setup and cached type inspection, and
+`docs/REFERENCE-BASELINE.md` for verified surfaces and remaining uncertainty.
+
 When implementation is authorized, test filtering, ordering, quantities, identity,
 input recovery, and cleanup independently of Unity where possible. Compile against
 the selected real references before owner handoff. Hosted reference substitutes
@@ -54,7 +59,6 @@ Check status before edits, preserve unrelated changes, and stage reviewed named
 paths only. Commit and push when requested; do not force-push. For sandbox ownership
 errors, use per-command `git -c safe.directory=<repo>` rather than global changes.
 
-`VERSION` contains manually edited `MAJOR` and `MINOR` integers. The scaffold
-workflow appends the GitHub run number as patch version. Its artifact is explicitly
-incomplete. Package completion, GitHub releases, and Thunderstore publication
-require later scope decisions.
+`VERSION` contains manually edited `MAJOR` and `MINOR` integers; the workflow
+appends the GitHub run number as patch version. Consult `docs/PROJECT.md` for
+package readiness. Repository pushes do not authorize release publication.

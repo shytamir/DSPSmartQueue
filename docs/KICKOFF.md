@@ -1,5 +1,8 @@
 # Replicator Queue: Project Kickoff
 
+This document defines the product contract. Current status and active work are
+tracked exclusively in [PROJECT.md](PROJECT.md).
+
 ## Objective
 
 Make the Replicator queue easier to control by showing the products the player requested and hiding their automatically queued intermediates.
@@ -97,4 +100,4 @@ A failed observation returns only the affected scope for correction and recheck.
 
 Preserve native behavior, verify exact game surfaces, test the new logic, and keep cleanup explicit. Use owner observations to resolve live presentation and interaction questions. Introduce additional architecture or tooling only when the implementation requires it.
 
-The technical basis is static inspection of `ForgeTask`, `MechaForge`, and `UIReplicatorWindow`. The next milestone is the integrated prototype and its feasibility result.
+The technical basis was static inspection of `ForgeTask`, `MechaForge`, and `UIReplicatorWindow`. Delivery scope and completion criteria are defined in the [roadmap](management/ROADMAP.md).
