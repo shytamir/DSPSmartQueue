@@ -5,7 +5,7 @@ Evidence recorded 2026-09-09. Story status is tracked only in
 
 ## Decisions and implementation
 
-- Plugin GUID: `shytamir.dspsmartqueue`; display name: `DSP Smart Queue`;
+- Plugin GUID: `smartqueue`; display name: `DSP Smart Queue`;
   assembly: `DSPSmartQueue.dll`.
 - Plugin target: `net472`, C# 7.3. This follows the reference mod's target and was
   verified by compilation against the selected game and BepInEx 5.4.17 references.

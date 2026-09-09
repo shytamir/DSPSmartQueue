@@ -50,7 +50,7 @@ var plugin = metadata.LoadFromAssemblyPath(Path.GetFullPath(args[2]));
 var entry = plugin.GetType("DSPSmartQueue.Plugin", true)!;
 if (entry.BaseType?.FullName != "BepInEx.BaseUnityPlugin") throw new Exception("Wrong plugin base.");
 var attribute = entry.GetCustomAttributesData().Single(a => a.AttributeType.FullName == "BepInEx.BepInPlugin");
-if ((string?)attribute.ConstructorArguments[0].Value != "shytamir.dspsmartqueue" ||
+if ((string?)attribute.ConstructorArguments[0].Value != "smartqueue" ||
     (string?)attribute.ConstructorArguments[1].Value != "DSP Smart Queue" ||
     (string?)attribute.ConstructorArguments[2].Value != plugin.GetName().Version!.ToString(3))
     throw new Exception("Plugin metadata/version mismatch.");

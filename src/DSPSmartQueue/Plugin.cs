@@ -7,7 +7,7 @@ namespace DSPSmartQueue
     [BepInPlugin(PluginGuid, PluginName, PluginVersion.Value)]
     public sealed class Plugin : BaseUnityPlugin
     {
-        public const string PluginGuid = "shytamir.dspsmartqueue";
+        public const string PluginGuid = "smartqueue";
         public const string PluginName = "DSP Smart Queue";
 
         private void Awake()
