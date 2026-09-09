@@ -55,7 +55,32 @@ restore requires NuGet access for pinned framework references and MetadataLoadCo
 If the desktop sandbox denies SDK discovery or NuGet authentication, run the same
 command in the approved desktop context; do not bypass certificate checks.
 
-Output is `artifacts/build/DSPSmartQueue.dll`. The command rejects missing
+Output is `artifacts/build/DSPSmartQueue.dll` with `build.json`. The JSON records
+VERSION plus BuildNumber, Git revision and working-tree status, source file hashes,
+reference DLL hashes, SDK version, checks performed, and the output DLL hash. Paths
+in the record are repository-relative or reference filenames; machine paths are
+not included. Reference hashes cover the DLLs available to compilation and metadata
+resolution in the selected directories. Keep those directories stable during a build.
+
+Each invocation invalidates the previous deliverable before input validation.
+Compilation uses `artifacts/build-staging/`; only a successful build and all checks
+promote the DLL and evidence to `artifacts/build/`. A failure removes the deliverable
+pair and returns nonzero. Staging files are not handoff artifacts. Run one build at
+a time per checkout, without concurrent source/reference edits. Dirty builds are
+identified explicitly; use a clean committed checkout for owner handoff.
+
+The command rejects missing
 references, unexpected output files, or failed binding, metadata, mapping, input,
 recovery, or lifecycle checks. It never installs or runs the plugin. Recorded
 verification evidence is linked from PROJECT.md.
+
+Hosted CI uses the same offline logic and binding fixtures without game files:
+
+```powershell
+dotnet run --project tests/FoundationChecks -c Release -- --logic-only
+```
+
+This mode does not compile the plugin or verify real-reference metadata, Harmony
+execution, or Unity rendering. CI gates its scaffold artifact on those offline
+checks. `scripts/Get-BuildVersion.ps1` supplies the same version rule to the local
+build and scaffold workflow; it rejects values outside assembly-version limits.

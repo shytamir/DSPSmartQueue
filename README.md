@@ -47,7 +47,8 @@ installation and in-game validation. Feasibility and publication remain separate
 
 `.github/workflows/build.yml` runs on pushes to `main` and manual dispatch. It reads
 the manually edited `MAJOR` and `MINOR` from `VERSION` and appends the workflow run
-number as patch version.
+number as patch version. Offline logic and binding fixtures gate the scaffold job;
+real-reference compilation uses the [local build command](docs/LOCAL-DEVELOPMENT.md).
 
 The initial scaffold produced a ZIP containing draft manifest metadata, this README,
 the license, and an incomplete-package notice. It did not build a DLL or provide an

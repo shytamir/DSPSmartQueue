@@ -1,7 +1,8 @@
 using System.Reflection;
 using DSPSmartQueue;
 
-if (args.Length != 3) throw new ArgumentException("Expected ManagedPath, DependencyPath, and plugin DLL path.");
+bool logicOnly = args.Length == 1 && args[0] == "--logic-only";
+if (!logicOnly && args.Length != 3) throw new ArgumentException("Expected --logic-only or ManagedPath, DependencyPath, and plugin DLL path.");
 VisibleRequestsChecks.Run();
 QueueStripChecks.Run();
 QueueRecoveryChecks.Run();
@@ -36,6 +37,12 @@ try
     throw new Exception("Missing game type accepted.");
 }
 catch (TypeLoadException) { }
+
+if (logicOnly)
+{
+    Console.WriteLine("PASS: offline logic and binding fixtures. Real-reference compilation, metadata, Harmony execution, and Unity rendering were not checked.");
+    return;
+}
 
 // MetadataLoadContext never loads game code into the executing runtime.
 var paths = Directory.GetFiles(args[0], "*.dll").Concat(Directory.GetFiles(args[1], "*.dll"))

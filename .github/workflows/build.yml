@@ -9,7 +9,24 @@ permissions:
   contents: read
 
 jobs:
+  offline-checks:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - name: Set up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: '10.0.302'
+      - name: Run offline checks
+        shell: pwsh
+        run: |
+          dotnet run --project tests/FoundationChecks -c Release -- --logic-only
+          if ($LASTEXITCODE) { throw 'Offline checks failed.' }
+          'Offline logic and binding fixtures passed. No plugin compilation, real-reference checks, Harmony execution, or Unity rendering.' >> $env:GITHUB_STEP_SUMMARY
+
   package-scaffold:
+    needs: offline-checks
     runs-on: windows-latest
     steps:
       - name: Check out source
@@ -21,18 +38,7 @@ jobs:
           BUILD_NUMBER: ${{ github.run_number }}
         run: |
           $ErrorActionPreference = 'Stop'
-          $values = @{}
-          foreach ($line in [IO.File]::ReadAllLines((Join-Path $PWD 'VERSION'))) {
-            if ($line -notmatch '^(MAJOR|MINOR)=(0|[1-9][0-9]*)$') {
-              throw "Invalid VERSION line: $line"
-            }
-            $key = $Matches[1]
-            if ($values.ContainsKey($key)) { throw "Duplicate VERSION key: $key" }
-            $values[$key] = $Matches[2]
-          }
-          if ($values.Count -ne 2) { throw 'VERSION must define MAJOR and MINOR.' }
-          if ($env:BUILD_NUMBER -notmatch '^[1-9][0-9]*$') { throw 'Invalid build number.' }
-          $version = '{0}.{1}.{2}' -f $values.MAJOR, $values.MINOR, $env:BUILD_NUMBER
+          $version = ./scripts/Get-BuildVersion.ps1 -BuildNumber $env:BUILD_NUMBER
           $stage = Join-Path $PWD 'artifacts/package-scaffold'
           New-Item -ItemType Directory -Force -Path $stage | Out-Null
           $manifest = [ordered]@{
