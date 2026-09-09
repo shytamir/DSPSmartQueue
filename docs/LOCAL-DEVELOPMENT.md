@@ -67,5 +67,7 @@ references, unexpected output files, or failed signature/metadata/mapping/input 
 installs or runs the plugin. See [SQ-1.1 evidence](implementation/SQ-1.1.md) for the
 recorded foundation verification and [SQ-1.2 evidence](implementation/SQ-1.2.md)
 for mapping checks. [SQ-1.3 evidence](implementation/SQ-1.3.md) describes the
-presentation/input boundary checks and their runtime limits. Consult PROJECT.md
+presentation/input boundary checks and their runtime limits.
+[SQ-1.4 evidence](implementation/SQ-1.4.md) covers recovery and lifecycle checks.
+Consult PROJECT.md
 for current delivery readiness.

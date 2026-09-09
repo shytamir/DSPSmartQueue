@@ -19,6 +19,12 @@ namespace DSPSmartQueue
             var task = RequiredType(game, "ForgeTask");
             var integer = RequiredType(core, "System.Int32");
             var voidType = RequiredType(core, "System.Void");
+            var manual = RequiredType(game, "ManualBehaviour");
+            RequireMethod(errors, manual, "_Close", voidType, false, Type.EmptyTypes, true);
+            var active = manual.GetProperty("active", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            if (active == null || active.PropertyType != RequiredType(core, "System.Boolean") ||
+                active.GetGetMethod() == null || active.GetIndexParameters().Length != 0)
+                errors.Add("ManualBehaviour.active: expected public readable instance Boolean property.");
             var unsignedArray = RequiredType(core, "System.UInt32").MakeArrayType();
             var tasks = RequiredType(core, "System.Collections.Generic.List`1").MakeGenericType(task);
             var text = RequiredType(ui, "UnityEngine.UI.Text");
@@ -63,7 +69,7 @@ namespace DSPSmartQueue
         }
 
         internal static void RequireMethod(List<string> errors, Type owner, string name, Type result,
-            bool isPrivate, Type[] parameters)
+            bool isPrivate, Type[] parameters, bool isPublic = false)
         {
             var method = owner.GetMethod(name, Declared, null, parameters, null);
             // The default reflection binder can accept widening conversions; hooks require exact types.
@@ -73,9 +79,9 @@ namespace DSPSmartQueue
                 for (int i = 0; i < parameters.Length; i++)
                     exactParameters &= actualParameters[i].ParameterType == parameters[i];
             if (method == null || !exactParameters || method.IsStatic || method.IsGenericMethod || method.ReturnType != result ||
-                (isPrivate ? !method.IsPrivate : !method.IsFamily))
+                (isPublic ? !method.IsPublic : isPrivate ? !method.IsPrivate : !method.IsFamily))
                 errors.Add(owner.FullName + "." + name + ": expected " +
-                    (isPrivate ? "private" : "protected") + " instance method returning " + result.FullName +
+                    (isPublic ? "public" : isPrivate ? "private" : "protected") + " instance method returning " + result.FullName +
                     " with parameters (" + string.Join(", ", Array.ConvertAll(parameters, p => p.FullName)) + ")");
         }
     }

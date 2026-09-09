@@ -10,5 +10,6 @@
     <Compile Include="../../src/DSPSmartQueue/BindingChecks.cs" Link="Product/BindingChecks.cs" />
     <Compile Include="../../src/DSPSmartQueue/VisibleRequests.cs" Link="Product/VisibleRequests.cs" />
     <Compile Include="../../src/DSPSmartQueue/QueueStrip.cs" Link="Product/QueueStrip.cs" />
+    <Compile Include="../../src/DSPSmartQueue/QueueRecovery.cs" Link="Product/QueueRecovery.cs" />
   </ItemGroup>
 </Project>

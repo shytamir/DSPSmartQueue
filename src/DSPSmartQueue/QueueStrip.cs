@@ -39,6 +39,14 @@ namespace DSPSmartQueue
         internal void Commit() { Ready = true; RefreshRequested = false; }
         internal void Invalidate() { Ready = false; RefreshRequested = true; }
 
+        internal void Clear()
+        {
+            Invalidate();
+            ClickInProgress = false;
+            presentedQueue = Array.Empty<T>();
+            Requests.Clear();
+        }
+
         internal bool BeginClick(IList<T> tasks, int slot, ref int nativeIndex, out ClickState state)
         {
             state = default(ClickState);

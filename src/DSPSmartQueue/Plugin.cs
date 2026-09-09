@@ -33,15 +33,25 @@ namespace DSPSmartQueue
             catch (Exception exception)
             {
                 Logger.LogError("Unable to validate queue bindings; plugin disabled: " + exception);
-                if (harmony != null) harmony.UnpatchSelf();
+                Stop();
                 enabled = false;
             }
         }
 
         private void OnDestroy()
         {
+            Stop();
+        }
+
+        private void OnDisable()
+        {
+            Stop();
+        }
+
+        private void Stop()
+        {
             if (harmony == null) return;
-            try { QueueHooks.Stop(harmony); }
+            try { QueueHooks.Stop(harmony); harmony = null; }
             catch (Exception exception) { Logger.LogError("Native queue restoration failed; input guard retained: " + exception); }
         }
     }

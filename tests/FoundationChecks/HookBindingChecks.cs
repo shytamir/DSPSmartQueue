@@ -7,6 +7,14 @@ internal static class HookBindingChecks
         var window = game.GetType("UIReplicatorWindow", true)!;
         var hooks = plugin.GetType("DSPSmartQueue.QueueHooks", true)!;
         const BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        var reset = hooks.GetMethod("ResetPrefix", flags)!;
+        if (!reset.IsStatic || reset.ReturnType.FullName != "System.Void" ||
+            reset.GetParameters().Length != 1 || reset.GetParameters()[0].Name != "__instance" ||
+            reset.GetParameters()[0].ParameterType != window)
+            throw new Exception("Invalid lifecycle reset hook.");
+        foreach (var name in new[] { "_OnOpen", "_OnClose", "_OnFree", "_OnDestroy" })
+            if (window.GetMethod(name, flags)?.GetParameters().Length != 0)
+                throw new Exception("Unexpected lifecycle target: " + name);
         foreach (var pair in new[] { ("PresentPrefix", "PresentFinalizer", "SetBufferData"), ("ClickPrefix", "ClickFinalizer", "OnQueueMouseDown") })
         {
             var original = window.GetMethod(pair.Item3, flags)!;

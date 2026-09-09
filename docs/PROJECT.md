@@ -12,22 +12,21 @@ instructions take precedence.
 ## Current phase
 
 Planning is complete. The two-epic, seven-story roadmap is approved for the first
-prototype delivery. SQ-1.3 has met its definition of done. Work stopped at that
-story's boundary; SQ-1.4 is the next planned work and has not been started.
+prototype delivery. SQ-1.4 has met its definition of done, completing SQ-1's
+implementation work. SQ-2.1 is next planned work and has not been started.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
 checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
-The UI/input integration compiles and its offline binding, mapping, and interaction
-checks pass. Comprehensive lifecycle/recovery verification and live feasibility
-validation have not been completed. The GitHub
+The adapter compiles and its offline binding, mapping, interaction, and lifecycle/
+recovery checks pass. Live feasibility validation has not been completed. The GitHub
 workflow still produces an incomplete scaffold artifact, not an installable package.
 
 ## Work tracking
 
 | Epic | Status |
 | --- | --- |
-| SQ-1: Safe integrated queue adapter | In progress; UI/input integration complete, recovery story pending |
+| SQ-1: Safe integrated queue adapter | Implementation complete; live feasibility remains SQ-2.3 |
 | SQ-2: Identified prototype delivery and feasibility | Planned |
 
 | Story | Status | Completion evidence |
@@ -35,7 +34,7 @@ workflow still produces an incomplete scaffold artifact, not an installable pack
 | [SQ-1.1](management/ROADMAP.md#sq-11--minimal-plugin-foundation) | Complete | [Compilation, metadata and negative checks](implementation/SQ-1.1.md) |
 | [SQ-1.2](management/ROADMAP.md#sq-12--identify-visible-requests) | Complete | [Read-only mapping and focused checks](implementation/SQ-1.2.md) |
 | [SQ-1.3](management/ROADMAP.md#sq-13--present-and-operate-the-same-task) | Complete | [Integration, boundary checks and limits](implementation/SQ-1.3.md) |
-| [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Planned | None yet |
+| [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Complete | [Recovery, cleanup checks and live observation handoff](implementation/SQ-1.4.md) |
 | [SQ-2.1](management/ROADMAP.md#sq-21--repeatable-identified-prototype-build) | Planned | None yet |
 | [SQ-2.2](management/ROADMAP.md#sq-22--prototype-package-and-owner-procedure) | Planned | None yet |
 | [SQ-2.3](management/ROADMAP.md#sq-23--owner-feasibility-result) | Planned | None yet |
