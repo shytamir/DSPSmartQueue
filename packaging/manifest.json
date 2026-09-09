@@ -1,0 +1,7 @@
+{
+  "name": "DSPSmartQueue",
+  "version_number": "0.1.0",
+  "website_url": "https://github.com/shytamir/DSPSmartQueue",
+  "description": "Shows requested products in the Replicator queue while preserving native crafting and task controls.",
+  "dependencies": ["xiaoye97-BepInEx-5.4.17"]
+}

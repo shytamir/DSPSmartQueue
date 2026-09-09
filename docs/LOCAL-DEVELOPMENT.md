@@ -81,6 +81,29 @@ dotnet run --project tests/FoundationChecks -c Release -- --logic-only
 ```
 
 This mode does not compile the plugin or verify real-reference metadata, Harmony
-execution, or Unity rendering. CI gates its scaffold artifact on those offline
-checks. `scripts/Get-BuildVersion.ps1` supplies the same version rule to the local
-build and scaffold workflow; it rejects values outside assembly-version limits.
+execution, or Unity rendering. CI runs those offline checks.
+`scripts/Get-BuildVersion.ps1` supplies the same version rule to the local
+build, package, and CI workflow; it rejects values outside assembly-version limits.
+
+## Private handoff package
+
+From a clean committed checkout, run `./scripts/New-PrototypePackage.ps1` with the
+same reference and BuildNumber parameters as Build-Local. It builds and verifies
+against real references, creates a ZIP, then checks its allowlist, source content,
+manifest/version, decoded 256x256 PNG, and DLL/evidence hashes before naming the
+handoff artifact. No proprietary references are packaged. Only the inspected ZIP
+and its adjacent `.inspection.json` under `artifacts/package/` are handoff files;
+`prototype.pending.zip` is temporary. Earlier identified packages remain unchanged.
+
+To inspect an existing ZIP against its retained local build evidence:
+
+```powershell
+./scripts/Test-PrototypePackage.ps1 -Path '<ZIP path>' -BuildDirectory '<directory containing verified DLL and build.json>'
+```
+
+Use the matching source checkout as well; changed package documents or templates
+are rejected. The inspector does not execute the DLL. Windows PowerShell 7 and
+System.Drawing decode the PNG; no Unity project or artwork toolchain is required.
+The package layout follows [Thunderstore's package rules](https://wiki.thunderstore.io/mods/creating-a-package)
+and [BepInEx folder routing](https://wiki.thunderstore.io/mods/packaging-your-mods).
+CI runs offline checks only; packages require the local real-reference command.

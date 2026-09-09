@@ -12,17 +12,16 @@ instructions take precedence.
 ## Current phase
 
 Planning is complete. The two-epic, seven-story roadmap is approved for the first
-prototype delivery. SQ-1 implementation and SQ-2.1 are complete. SQ-2.2 is next
-planned work and has not been started.
+prototype delivery. SQ-1 implementation and SQ-2.1 are complete. SQ-2.2 is active: private package and owner procedure.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
 checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
 The adapter compiles and its offline binding, mapping, interaction, and lifecycle/
 recovery checks pass. Live feasibility validation has not been completed. The GitHub
-workflow passes offline logic/binding fixtures and produces an incomplete scaffold
-artifact, not an installable package. The local build emits an identified, verified
-DLL and evidence record; packaging and the owner procedure remain SQ-2.2.
+workflow runs offline logic/binding fixtures; private package creation uses the
+local real-reference build. SQ-2.2 package inspection and owner handoff preparation
+are in progress.
 
 ## Work tracking
 
@@ -38,7 +37,7 @@ DLL and evidence record; packaging and the owner procedure remain SQ-2.2.
 | [SQ-1.3](management/ROADMAP.md#sq-13--present-and-operate-the-same-task) | Complete | [Integration, boundary checks and limits](implementation/SQ-1.3.md) |
 | [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Complete | [Recovery, cleanup checks and live observation handoff](implementation/SQ-1.4.md) |
 | [SQ-2.1](management/ROADMAP.md#sq-21--repeatable-identified-prototype-build) | Complete | [Build identity, clean checkout and failure checks](implementation/SQ-2.1.md) |
-| [SQ-2.2](management/ROADMAP.md#sq-22--prototype-package-and-owner-procedure) | Planned | None yet |
+| [SQ-2.2](management/ROADMAP.md#sq-22--prototype-package-and-owner-procedure) | Active | Package and procedure preparation |
 | [SQ-2.3](management/ROADMAP.md#sq-23--owner-feasibility-result) | Planned | None yet |
 
 Record concise evidence against each story's definition of done before marking it

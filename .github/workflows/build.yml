@@ -1,4 +1,4 @@
-name: Thunderstore package scaffold
+name: Offline checks
 
 on:
   push:
@@ -21,48 +21,8 @@ jobs:
       - name: Run offline checks
         shell: pwsh
         run: |
+          $version = ./scripts/Get-BuildVersion.ps1 -BuildNumber $env:GITHUB_RUN_NUMBER
           dotnet run --project tests/FoundationChecks -c Release -- --logic-only
           if ($LASTEXITCODE) { throw 'Offline checks failed.' }
           'Offline logic and binding fixtures passed. No plugin compilation, real-reference checks, Harmony execution, or Unity rendering.' >> $env:GITHUB_STEP_SUMMARY
-
-  package-scaffold:
-    needs: offline-checks
-    runs-on: windows-latest
-    steps:
-      - name: Check out source
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-
-      - name: Prepare incomplete package scaffold
-        shell: pwsh
-        env:
-          BUILD_NUMBER: ${{ github.run_number }}
-        run: |
-          $ErrorActionPreference = 'Stop'
-          $version = ./scripts/Get-BuildVersion.ps1 -BuildNumber $env:BUILD_NUMBER
-          $stage = Join-Path $PWD 'artifacts/package-scaffold'
-          New-Item -ItemType Directory -Force -Path $stage | Out-Null
-          $manifest = [ordered]@{
-            name = 'DSPSmartQueue'
-            version_number = $version
-            website_url = 'https://github.com/shytamir/DSPSmartQueue'
-            description = 'Package scaffold for the Replicator queue presentation adapter.'
-            dependencies = @('xiaoye97-BepInEx-5.4.17')
-          }
-          $manifest | ConvertTo-Json -Depth 3 | Set-Content (Join-Path $stage 'manifest.json') -Encoding utf8NoBOM
-          Copy-Item -LiteralPath 'README.md', 'LICENSE' -Destination $stage
-          @'
-          INCOMPLETE SCAFFOLD - DO NOT INSTALL OR PUBLISH
-          This artifact contains metadata and documentation only.
-          See docs/PROJECT.md in the repository for delivery readiness.
-          '@ | Set-Content (Join-Path $stage 'SCAFFOLD-NOT-INSTALLABLE.txt') -Encoding utf8NoBOM
-          $zip = Join-Path $PWD "artifacts/DSPSmartQueue-scaffold-$version.zip"
-          Compress-Archive -Path "$stage/*" -DestinationPath $zip -Force
-          "Scaffold version: $version. No plugin was built; no release was published." >> $env:GITHUB_STEP_SUMMARY
-
-      - name: Upload incomplete scaffold
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
-        with:
-          name: DSPSmartQueue-scaffold-${{ github.run_number }}
-          path: artifacts/DSPSmartQueue-scaffold-*.zip
-          if-no-files-found: error
-          retention-days: 14
+          "Version: $version. Private packages require the local real-reference build." >> $env:GITHUB_STEP_SUMMARY

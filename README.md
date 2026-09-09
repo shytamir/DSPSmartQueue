@@ -45,15 +45,22 @@ installation and in-game validation. Feasibility and publication remain separate
 
 ## Versioning and package artifacts
 
-`.github/workflows/build.yml` runs on pushes to `main` and manual dispatch. It reads
-the manually edited `MAJOR` and `MINOR` from `VERSION` and appends the workflow run
-number as patch version. Offline logic and binding fixtures gate the scaffold job;
-real-reference compilation uses the [local build command](docs/LOCAL-DEVELOPMENT.md).
+`.github/workflows/build.yml` runs offline checks on pushes to `main` and manual
+dispatch. Private packages are built locally against the selected real references:
 
-The initial scaffold produced a ZIP containing draft manifest metadata, this README,
-the license, and an incomplete-package notice. It did not build a DLL or provide an
-icon. Artifact production alone does not establish installation or release readiness;
-consult the authoritative project status before using a build.
+```powershell
+./scripts/New-PrototypePackage.ps1 -BuildNumber 0
+```
+
+VERSION supplies major/minor components; the build number supplies patch (CI uses
+its run number). The command requires committed source, runs the build/checks, and
+writes an inspected ZIP with an adjacent inspection record under `artifacts/package/`.
+Its filename includes version, source revision, and a hash prefix. See
+[local development](docs/LOCAL-DEVELOPMENT.md) for prerequisites and
+[owner procedure](docs/OWNER-PROCEDURE.md) for private evaluation.
+
+Consult PROJECT.md for the exact handoff and acceptance state. Repository pushes
+and local packaging do not publish releases or install anything.
 
 ## License
 
