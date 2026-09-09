@@ -1,0 +1,7 @@
+# Local builds and agent tools
+artifacts/
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
