@@ -12,15 +12,17 @@ instructions take precedence.
 ## Current phase
 
 Planning is complete. The two-epic, seven-story roadmap is approved for the first
-prototype delivery. SQ-1.4 has met its definition of done, completing SQ-1's
-implementation work. SQ-2.1 is active: repeatable identified prototype build.
+prototype delivery. SQ-1 implementation and SQ-2.1 are complete. SQ-2.2 is next
+planned work and has not been started.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
 checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
 The adapter compiles and its offline binding, mapping, interaction, and lifecycle/
 recovery checks pass. Live feasibility validation has not been completed. The GitHub
-workflow still produces an incomplete scaffold artifact, not an installable package.
+workflow passes offline logic/binding fixtures and produces an incomplete scaffold
+artifact, not an installable package. The local build emits an identified, verified
+DLL and evidence record; packaging and the owner procedure remain SQ-2.2.
 
 ## Work tracking
 
@@ -35,7 +37,7 @@ workflow still produces an incomplete scaffold artifact, not an installable pack
 | [SQ-1.2](management/ROADMAP.md#sq-12--identify-visible-requests) | Complete | [Read-only mapping and focused checks](implementation/SQ-1.2.md) |
 | [SQ-1.3](management/ROADMAP.md#sq-13--present-and-operate-the-same-task) | Complete | [Integration, boundary checks and limits](implementation/SQ-1.3.md) |
 | [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Complete | [Recovery, cleanup checks and live observation handoff](implementation/SQ-1.4.md) |
-| [SQ-2.1](management/ROADMAP.md#sq-21--repeatable-identified-prototype-build) | Active | Implementation and verification in progress |
+| [SQ-2.1](management/ROADMAP.md#sq-21--repeatable-identified-prototype-build) | Complete | [Build identity, clean checkout and failure checks](implementation/SQ-2.1.md) |
 | [SQ-2.2](management/ROADMAP.md#sq-22--prototype-package-and-owner-procedure) | Planned | None yet |
 | [SQ-2.3](management/ROADMAP.md#sq-23--owner-feasibility-result) | Planned | None yet |
 

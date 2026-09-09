@@ -26,3 +26,5 @@ The build record accompanies each local DLL; this document does not assign an ol
 hash to future builds. Hosted checks do not compile the plugin or inspect real
 game metadata. No Harmony execution, Unity rendering, installed validation, or
 byte-for-byte reproducibility was established by these checks.
+
+Implementation commit `9e4ef8e` passed [hosted run 34307437268](https://github.com/shytamir/DSPSmartQueue/actions/runs/34307437268), including both offline checks and the gated scaffold job.
