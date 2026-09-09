@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DSPSmartQueue
 {
-    // T is the native task reference in production; selectors provide a small offline test seam.
     internal sealed class VisibleRequests<T> where T : class
     {
         internal const int Capacity = 14;

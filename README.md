@@ -1,6 +1,6 @@
 # DSPSmartQueue
 
-A minimal BepInEx mod design for Dyson Sphere Program, intended for distribution as a
+A minimal BepInEx mod for Dyson Sphere Program, intended for distribution as a
 Thunderstore package. It makes the Replicator queue easier to control by showing
 the products the player requested and hiding automatically queued intermediates.
 

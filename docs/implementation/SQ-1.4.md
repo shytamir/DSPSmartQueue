@@ -1,7 +1,8 @@
 # SQ-1.4 implementation evidence
 
-Recorded 2026-09-09. Current status is authoritative only in
-[PROJECT.md](../PROJECT.md).
+Historical evidence recorded 2026-09-09. The implementation description and build
+results below describe this story's slice at that time. Current status is tracked
+only in [PROJECT.md](../PROJECT.md).
 
 ## Recovery and lifecycle behavior
 
@@ -70,6 +71,5 @@ Output: only DSPSmartQueue.dll, version 0.1.0, 19,968 bytes; SHA256:
 - Follow the owner's normal exit/removal/restart cleanup and confirm native queue
   behavior without the plugin. This does not require a hot-reload mechanism.
 
-Failure injection, reference identity, and cleanup assertions remain automated
-work, not owner homework. These live observations and full feasibility acceptance
-have not been performed by the agent.
+Failure injection, reference identity, and cleanup were checked offline. The
+recorded verification did not include these live observations.

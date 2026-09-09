@@ -43,6 +43,6 @@ try {
     if ($unexpected.Count) { throw "Unexpected build output: $($unexpected.Name -join ', ')" }
     & dotnet run --project (Join-Path $repo 'tests/FoundationChecks/FoundationChecks.csproj') -c Release `
         '-p:RestoreSources=https://api.nuget.org/v3/index.json' -- $ManagedPath $DependencyPath $dll
-    if ($LASTEXITCODE) { throw 'Foundation verification failed.' }
-    Write-Host "Verified foundation DLL: $dll ($version)"
+    if ($LASTEXITCODE) { throw 'Offline checks failed.' }
+    Write-Host "Verified plugin DLL: $dll ($version)"
 } finally { $env:NUGET_PACKAGES = $oldPackages }

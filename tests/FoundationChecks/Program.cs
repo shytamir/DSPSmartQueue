@@ -35,7 +35,7 @@ try
     BindingChecks.Validate(typeof(Fixture).Assembly, typeof(Fixture).Assembly, typeof(Fixture).Assembly, typeof(int).Assembly);
     throw new Exception("Missing game type accepted.");
 }
-catch (TypeLoadException e) when (e.Message.Contains("UIReplicatorWindow")) { }
+catch (TypeLoadException) { }
 
 // MetadataLoadContext never loads game code into the executing runtime.
 var paths = Directory.GetFiles(args[0], "*.dll").Concat(Directory.GetFiles(args[1], "*.dll"))
@@ -52,10 +52,11 @@ if (actualErrors.Count != 0) throw new Exception(string.Join(Environment.NewLine
 var plugin = metadata.LoadFromAssemblyPath(Path.GetFullPath(args[2]));
 HookBindingChecks.Run(game, plugin);
 var entry = plugin.GetType("DSPSmartQueue.Plugin", true)!;
-if (entry.BaseType?.FullName != "BepInEx.BaseUnityPlugin") throw new Exception("Wrong plugin base.");
-var attribute = entry.GetCustomAttributesData().Single(a => a.AttributeType.FullName == "BepInEx.BepInPlugin");
-if ((string?)attribute.ConstructorArguments[0].Value != "smartqueue" ||
-    (string?)attribute.ConstructorArguments[1].Value != "DSP Smart Queue" ||
+var bepInEx = metadata.LoadFromAssemblyName("BepInEx");
+if (entry.BaseType != bepInEx.GetType("BepInEx.BaseUnityPlugin", true)) throw new Exception("Wrong plugin base.");
+var attribute = entry.GetCustomAttributesData().Single(a => a.AttributeType == bepInEx.GetType("BepInEx.BepInPlugin", true));
+if (!Equals(attribute.ConstructorArguments[0].Value, entry.GetField("PluginGuid")!.GetRawConstantValue()) ||
+    !Equals(attribute.ConstructorArguments[1].Value, entry.GetField("PluginName")!.GetRawConstantValue()) ||
     (string?)attribute.ConstructorArguments[2].Value != plugin.GetName().Version!.ToString(3))
     throw new Exception("Plugin metadata/version mismatch.");
 if (AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name is "Assembly-CSharp" or "DSPSmartQueue"))

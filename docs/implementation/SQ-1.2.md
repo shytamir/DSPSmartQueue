@@ -1,7 +1,8 @@
 # SQ-1.2 implementation evidence
 
-Evidence recorded 2026-09-09. Current story status is authoritative only in
-[PROJECT.md](../PROJECT.md).
+Historical evidence recorded 2026-09-09. The implementation description and build
+results below describe this story's slice at that time. Current status is tracked
+only in [PROJECT.md](../PROJECT.md).
 
 ## Implementation
 
@@ -19,7 +20,7 @@ operations by output count; multiple outputs or an absent recipe keep operations
 Rebuild clears old slots first. A failed rebuild clears partial results and
 rethrows; Clear also releases task references and resets counts. This is local
 mapping hygiene, not UI recovery or session integration. No UI/input hook or plugin
-activation behavior was added; those belong to subsequent stories.
+activation behavior was added; they were outside this slice.
 
 ## Verification
 

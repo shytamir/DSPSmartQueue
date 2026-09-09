@@ -38,13 +38,6 @@ new machine.
 The preparation installed [ILSpy CLI 11.0.0.9375](https://www.nuget.org/packages/ilspycmd/11.0.0.9375),
 which targets .NET 10. Tool binaries, NuGet configuration/packages, machine paths,
 the full reference baseline, and cached inspection stay in the ignored directory.
-Preparation created no Unity project, plugin build, or test project. Product build
-commands and target selection are defined in the roadmap's implementation stories.
-
-The initial install encountered sandbox NuGet TLS authentication failure; the same
-command succeeded in the desktop context. No certificate validation bypass was
-used. Normal activation and static inspection subsequently succeeded in the sandbox.
-
 ## Build and run offline checks
 
 ```powershell
@@ -63,11 +56,6 @@ If the desktop sandbox denies SDK discovery or NuGet authentication, run the sam
 command in the approved desktop context; do not bypass certificate checks.
 
 Output is `artifacts/build/DSPSmartQueue.dll`. The command rejects missing
-references, unexpected output files, or failed signature/metadata/mapping/input checks. It never
-installs or runs the plugin. See [SQ-1.1 evidence](implementation/SQ-1.1.md) for the
-recorded foundation verification and [SQ-1.2 evidence](implementation/SQ-1.2.md)
-for mapping checks. [SQ-1.3 evidence](implementation/SQ-1.3.md) describes the
-presentation/input boundary checks and their runtime limits.
-[SQ-1.4 evidence](implementation/SQ-1.4.md) covers recovery and lifecycle checks.
-Consult PROJECT.md
-for current delivery readiness.
+references, unexpected output files, or failed binding, metadata, mapping, input,
+recovery, or lifecycle checks. It never installs or runs the plugin. Recorded
+verification evidence is linked from PROJECT.md.

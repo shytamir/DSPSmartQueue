@@ -1,12 +1,12 @@
 # SQ-1.1 implementation evidence
 
-Evidence recorded 2026-09-09. Story status is tracked only in
-[PROJECT.md](../PROJECT.md).
+Historical evidence recorded 2026-09-09. The implementation description and build
+results below describe this story's slice at that time. Current status is tracked
+only in [PROJECT.md](../PROJECT.md).
 
 ## Decisions and implementation
 
-- Plugin GUID: `smartqueue`; display name: `DSP Smart Queue`;
-  assembly: `DSPSmartQueue.dll`.
+- Plugin identity constants are defined in `src/DSPSmartQueue/Plugin.cs`.
 - Plugin target: `net472`, C# 7.3. This follows the reference mod's target and was
   verified by compilation against the selected game and BepInEx 5.4.17 references.
   It is not a claim of in-game compatibility.
@@ -19,7 +19,7 @@ Evidence recorded 2026-09-09. Story status is tracked only in
   Missing or mismatched bindings log incompatibility and disable the component.
   No queue patches, UI writes, task mapping, or hook activation were implemented.
 - The build command derives the plugin attribute and assembly versions from VERSION
-  plus BuildNumber (local default 0). Broader provenance/CI work belongs to SQ-2.1.
+  plus BuildNumber (local default 0). Provenance/CI work was outside this slice.
 
 ## Verification
 
@@ -55,4 +55,4 @@ Run `./scripts/Build-Local.ps1` after configuring local reference directories, o
 supply explicit paths as documented in [local development](../LOCAL-DEVELOPMENT.md).
 The command compiles, checks the output allowlist, and runs the focused checks;
 failures return nonzero. Generated sources, binaries, and restored packages are
-ignored. The deliverable is a foundation DLL, not the completed queue adapter.
+ignored. The recorded output above was the foundation DLL.

@@ -39,17 +39,15 @@ jobs:
             name = 'DSPSmartQueue'
             version_number = $version
             website_url = 'https://github.com/shytamir/DSPSmartQueue'
-            description = 'Package scaffold only. Replicator queue presentation adapter; implementation pending.'
+            description = 'Package scaffold for the Replicator queue presentation adapter.'
             dependencies = @('xiaoye97-BepInEx-5.4.17')
           }
           $manifest | ConvertTo-Json -Depth 3 | Set-Content (Join-Path $stage 'manifest.json') -Encoding utf8NoBOM
           Copy-Item -LiteralPath 'README.md', 'LICENSE' -Destination $stage
           @'
           INCOMPLETE SCAFFOLD - DO NOT INSTALL OR PUBLISH
-          Pending: plugin compilation and focused tests, final package metadata,
-          256x256 icon.png, plugin DLL placement, and package validation.
-          Installed/in-game feasibility validation belongs to the owner.
-          No game or dependency assemblies belong in this package.
+          This artifact contains metadata and documentation only.
+          See docs/PROJECT.md in the repository for delivery readiness.
           '@ | Set-Content (Join-Path $stage 'SCAFFOLD-NOT-INSTALLABLE.txt') -Encoding utf8NoBOM
           $zip = Join-Path $PWD "artifacts/DSPSmartQueue-scaffold-$version.zip"
           Compress-Archive -Path "$stage/*" -DestinationPath $zip -Force

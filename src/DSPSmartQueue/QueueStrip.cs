@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DSPSmartQueue
 {
-    // Shared offline-testable presentation/input boundary. No native actions are performed here.
     internal sealed class QueueStrip<T> where T : class
     {
         internal struct ClickState
@@ -16,7 +15,6 @@ namespace DSPSmartQueue
         private IList<T> presentedQueue = Array.Empty<T>();
         internal bool Ready { get; private set; }
         internal bool ClickInProgress { get; private set; }
-        internal bool RefreshRequested { get; private set; } = true;
 
         internal QueueStrip(VisibleRequests<T> requests) { Requests = requests; }
 
@@ -36,8 +34,8 @@ namespace DSPSmartQueue
         }
 
         // Commit only after the native buffer upload succeeds.
-        internal void Commit() { Ready = true; RefreshRequested = false; }
-        internal void Invalidate() { Ready = false; RefreshRequested = true; }
+        internal void Commit() { Ready = true; }
+        internal void Invalidate() { Ready = false; }
 
         internal void Clear()
         {

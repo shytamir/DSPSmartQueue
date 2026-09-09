@@ -41,7 +41,8 @@ workflow still produces an incomplete scaffold artifact, not an installable pack
 
 Record concise evidence against each story's definition of done before marking it
 complete. Activation identifies the next work; it is not completion evidence.
-Identity, target framework, and checked signatures are recorded in SQ-1.1's evidence.
+Plugin identity is defined in `src/DSPSmartQueue/Plugin.cs`; target framework and
+initial binding verification are recorded in SQ-1.1's evidence.
 No further planning document is required before the next bounded story.
 
 ## Delivery boundary

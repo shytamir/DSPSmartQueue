@@ -1,7 +1,8 @@
 # SQ-1.3 implementation evidence
 
-Recorded 2026-09-09. Current status is authoritative only in
-[PROJECT.md](../PROJECT.md).
+Historical evidence recorded 2026-09-09. The implementation description and build
+results below describe this story's slice at that time. Current status is tracked
+only in [PROJECT.md](../PROJECT.md).
 
 ## Integration
 
@@ -57,11 +58,8 @@ Output: only DSPSmartQueue.dll, version 0.1.0, 16,896 bytes; SHA256:
 
 `bce65498c8887ec20c928e467050b4b4c04ce76ddc63ee7df0a500f4646a6d73`
 
-## Boundary for subsequent work
+## Verification limits
 
-Presentation failure blocks uncertain clicks until a successful refresh. Basic
-shutdown attempts native refresh before removing owned hooks; if restoration fails,
-the guard is retained instead of exposing raw input over a filtered view. These
-minimum safeguards accompany activation, but comprehensive partial-failure recovery,
-close/reopen/session cleanup, and teardown verification belong to SQ-1.4. This
-build is not an owner feasibility handoff. Live acceptance remains SQ-2.3.
+This slice included basic refresh and shutdown guards. Comprehensive failure
+recovery and lifecycle cleanup were outside its verification scope. The offline
+checks did not establish live feasibility.

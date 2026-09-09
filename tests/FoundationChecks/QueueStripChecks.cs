@@ -38,7 +38,7 @@ internal static class QueueStripChecks
         Check(!view.BeginClick(tasks, mouse, ref mouse, out var nested) && !nested.Translated, "nested input blocked while index is translated");
         try { nativeCalls++; tasks.RemoveAt(mouse); } // Stand-in original cancellation, once.
         finally { view.EndClick(ref mouse, state); }
-        Check(mouse == 1 && nativeCalls == 1 && view.RefreshRequested && !view.Ready, "normal restoration and refresh");
+        Check(mouse == 1 && nativeCalls == 1 && !view.Ready, "normal restoration and refresh");
         Present(0);
         mouse = 1;
         tasks.RemoveAt(0); // A preceding root cancelled after rendering.
@@ -55,7 +55,7 @@ internal static class QueueStripChecks
         Present(0);
         tasks.Clear();
         mouse = 0;
-        Check(!view.BeginClick(tasks, 0, ref mouse, out state) && !state.Translated && mouse == 0 && view.RefreshRequested, "disappeared target consumed");
+        Check(!view.BeginClick(tasks, 0, ref mouse, out state) && !state.Translated && mouse == 0 && !view.Ready, "disappeared target consumed");
         view.EndClick(ref mouse, state);
         tasks.Add(a);
         tasks.AddRange(Enumerable.Range(0, 20).Select(_ => new Task(0, 8, 1)));
@@ -82,7 +82,7 @@ internal static class QueueStripChecks
         catch (InvalidOperationException) { }
         Check(!view.Ready && !view.BeginClick(tasks, 0, ref mouse, out state), "failed projection blocks input");
         Present(0);
-        Check(view.Ready && !view.RefreshRequested, "successful refresh restores mapped input");
+        Check(view.Ready, "successful refresh restores mapped input");
         Check(nativeCalls == 2, "invalid actions not dispatched");
         Console.WriteLine("PASS: strip buffers/hover, exact identity dispatch, stale/empty/uncommitted input, normal/exceptional index restoration, refresh.");
     }

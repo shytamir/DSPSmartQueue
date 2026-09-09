@@ -4,8 +4,6 @@ using System.Reflection;
 
 namespace DSPSmartQueue
 {
-    // Reflection only: no target construction, field reads/writes, or method invocation.
-    // The same checks work in a MetadataLoadContext during offline verification.
     internal static class BindingChecks
     {
         private const BindingFlags Declared = BindingFlags.Public | BindingFlags.NonPublic |
