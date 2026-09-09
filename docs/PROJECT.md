@@ -16,8 +16,8 @@ The first public release is 1.0.0, under DSPSmartQueue-DSPSmartQueue. The owner
 will publish it. Publication has not been reported.
 
 The owner runtime-validated the final-icon 0.9.0 candidate. The subsequent 1.0.0
-promotion changed version identity only. Public-package correction and verification
-are in progress; no new runtime behavior is being introduced.
+promotion changed version identity only. The public-package correction is verified;
+its DLL is byte-identical to the preceding 1.0.0 build.
 
 ## Release readiness
 
@@ -28,13 +28,27 @@ superseded for publication. The old instruction to publish 0.9.0 is withdrawn.
 The public ZIP contract is exactly manifest, player README, icon, license, and
 plugin DLL. Build/inspection JSON stays alongside the ZIP for maintainers. The
 owner procedure and all management documents remain in the repository. Publication
-uses only the corrected ZIP identified here after verification.
+uses only the corrected ZIP identified below.
 
 The owner supplied the icon and approved the README/tagline. The README's viewport
 wording was corrected to state that requests beyond the first 14 remain queued.
 Release scripts and their regression checks enforce the public package boundary.
 The GitHub workflow runs offline checks; real-reference compilation and ZIP checks
 run locally. No agent-installed or agent-run gameplay is claimed.
+
+Final verification on 2026-09-09 passed real-reference compilation (zero warnings/
+errors), all offline/metadata checks, public-package regression checks, and a direct
+inspection of every ZIP entry. Manifest, DLL, and build versions agree at 1.0.0;
+the exact owner icon, dependency availability, public repository URL, and repository
+file links were checked. [Hosted checks](https://github.com/shytamir/DSPSmartQueue/actions/runs/34312603267)
+also passed for the package source. No owner gameplay or new runtime behavior was claimed.
+
+- Public ZIP: `artifacts/package/DSPSmartQueue-1.0.0-0bb07238e4c8-2920307CA963.zip`.
+- Source: `0bb07238e4c8e4e4f0c1c31d0c54ec8869871285`.
+- ZIP SHA256: `2920307CA963778336D080717815D91057CDFE574EED04ACC33E7FD9D047123F`.
+- DLL SHA256: `83EA785969DBF326EDF45085BF61D193CD82CD75778F927B800686066D2B2E7A`.
+- Keep adjacent `.build.json` and `.inspection.json` files for verification;
+  upload only the ZIP. Earlier private handoff ZIPs must not be published.
 
 ## Work tracking
 
