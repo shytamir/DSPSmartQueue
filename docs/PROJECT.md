@@ -13,8 +13,9 @@ instructions take precedence.
 
 The two-epic, seven-story prototype delivery is complete. The owner accepted the
 identified handoff after passing all live observations and cleanup. No planned
-stories remain open. Version 0.9 is the release candidate following the owner's
-pre-release instruction. The owner-supplied release icon has been added unchanged.
+stories remain open. The owner runtime-validated version 0.9.0 with the final icon
+and approved first publication after the final review. The publishing namespace
+is DSPSmartQueue; the owner is creating that team. Publication has not occurred.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
@@ -25,7 +26,7 @@ validation passed. The GitHub workflow runs offline logic/binding fixtures; priv
 package creation uses the local real-reference build. Installation and live
 observations were performed by the owner, not the agent.
 
-## Release candidate
+## Release readiness
 
 Pre-release review on 2026-09-09 covered runtime boundaries, build identity,
 package contents, approved player-facing copy, and CI. VERSION is 0.9 (local
@@ -43,12 +44,25 @@ package version 0.9.0; a supplied build number replaces the patch component).
   dimensions were verified; the original file was copied unchanged.
 - The management pass removed obsolete hook-validation wording. PROJECT.md remains
   the sole current status record; dated prototype evidence and acceptance retain
-  their original scope. Release publication remains a separate owner decision.
+  their original scope. The owner subsequently approved first publication.
 
-The acceptance below belongs to the identified 0.1.0 prototype. It is preserved
-as evidence rather than relabeled as a live test of a newly versioned DLL. Each
-candidate package has its own source/DLL/ZIP identity in the adjacent inspection
-record and enclosed build.json.
+The original acceptance below belongs to the 0.1.0 prototype. The owner separately
+reported another successful runtime validation for the final-icon 0.9.0 candidate
+on 2026-09-09. Final archive inspection passed; the declared BepInEx dependency was
+available, the repository was public, and hosted checks passed for the same source
+([run 34311531714](https://github.com/shytamir/DSPSmartQueue/actions/runs/34311531714)).
+
+Publish the existing validated ZIP, without rebuilding:
+
+- Namespace/package/version: `DSPSmartQueue-DSPSmartQueue-0.9.0`.
+- ZIP: `artifacts/package/DSPSmartQueue-0.9.0-d63cba1e8097-9278B9FD1344.zip`.
+- Source: `d63cba1e809754f2c6de2483b1536263d9ede54f`.
+- ZIP SHA256: `9278B9FD1344E9E32C88F60799BB59E92239D266F2A09031CEC3768C49D1FDB6`.
+- DLL SHA256: `282CEBD93269F95F3512F1CD2ADB7B6A71C78891A135F81DB9424757305922C5`.
+
+The enclosed build.json records automated build-time evidence; its runtimeValidated
+flag is false because the build command never runs the game. The later owner
+acceptance is recorded here without rewriting the validated archive.
 
 ## Work tracking
 
@@ -110,6 +124,6 @@ is linked under SQ-2.2 and retained with the package.
 ## Delivery boundary
 
 Agents perform repository implementation, static inspection, and offline checks.
-The owner accepted prototype feasibility for the identified handoff. GitHub
-release and Thunderstore publication are not authorized; pushing repository work
-to main does not change that boundary.
+The owner approved first Thunderstore publication of the identified 0.9.0 ZIP
+under the DSPSmartQueue team. Team creation and upload are outstanding. No public
+release URL or publication success has been recorded.
