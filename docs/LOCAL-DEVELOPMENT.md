@@ -85,25 +85,36 @@ execution, or Unity rendering. CI runs those offline checks.
 `scripts/Get-BuildVersion.ps1` supplies the same version rule to the local
 build, package, and CI workflow; it rejects values outside assembly-version limits.
 
-## Private handoff package
+## Release package
 
-From a clean committed checkout, run `./scripts/New-PrototypePackage.ps1` with the
-same reference and BuildNumber parameters as Build-Local. It builds and verifies
-against real references, creates a ZIP, then checks its allowlist, source content,
-manifest/version, decoded 256x256 PNG, and DLL/evidence hashes before naming the
-handoff artifact. No proprietary references are packaged. Only the inspected ZIP
-and its adjacent `.inspection.json` under `artifacts/package/` are handoff files;
-`prototype.pending.zip` is temporary. Earlier identified packages remain unchanged.
+From a clean committed checkout, run `./scripts/New-Package.ps1` with the same
+reference and BuildNumber parameters as Build-Local. It builds against real
+references and inspects the actual ZIP before naming the release artifact.
 
-To inspect an existing ZIP against its retained local build evidence:
+The public ZIP contains exactly:
+
+- `manifest.json`
+- `README.md`
+- `icon.png` (decoded 256x256 PNG)
+- `LICENSE`
+- `BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll`
+
+Only the ZIP is for publication. Its adjacent `.build.json` and `.inspection.json`
+retain source/reference identity, verification results, and hashes for maintainers.
+Owner procedures, management docs, references, and caches are excluded from the
+ZIP. `package.pending.zip` is temporary. Previous artifacts are retained unchanged;
+PROJECT.md identifies which release is suitable for publication.
+
+Inspect and exercise the package regression checks using the matching checkout
+and the verified DLL/build.json directory:
 
 ```powershell
-./scripts/Test-PrototypePackage.ps1 -Path '<ZIP path>' -BuildDirectory '<directory containing verified DLL and build.json>'
+./scripts/Test-Package.ps1 -Path '<ZIP path>' -BuildDirectory '<verified build directory>'
+./tests/PackageChecks.ps1 -Path '<ZIP path>' -BuildDirectory '<verified build directory>'
 ```
 
-Use the matching source checkout as well; changed package documents or templates
-are rejected. The inspector does not execute the DLL. Windows PowerShell 7 and
-System.Drawing decode the PNG; no Unity project or artwork toolchain is required.
-The package layout follows [Thunderstore's package rules](https://wiki.thunderstore.io/mods/creating-a-package)
+Changed package documents or templates are rejected. Windows PowerShell 7 and
+System.Drawing decode the PNG; the inspector does not execute the plugin.
+The package follows [Thunderstore's package rules](https://wiki.thunderstore.io/mods/creating-a-package)
 and [BepInEx folder routing](https://wiki.thunderstore.io/mods/packaging-your-mods).
-CI runs offline checks only; packages require the local real-reference command.
+CI runs offline checks only; package checks require the local real-reference build.

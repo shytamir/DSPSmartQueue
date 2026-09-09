@@ -1,5 +1,8 @@
 # Owner feasibility procedure
 
+Historical prototype procedure. Package paths and enclosed evidence below refer
+to the original private handoff, not the public release ZIP.
+
 Current readiness and acceptance are tracked only in the repository's
 [PROJECT.md](https://github.com/shytamir/DSPSmartQueue/blob/main/docs/PROJECT.md).
 This procedure supplies observations for SQ-2.3; installing or accepting the

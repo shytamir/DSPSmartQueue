@@ -46,15 +46,16 @@ Consult PROJECT.md for acceptance and release readiness.
 ## Versioning and package artifacts
 
 `.github/workflows/build.yml` runs offline checks on pushes to `main` and manual
-dispatch. Private packages are built locally against the selected real references:
+dispatch. Release packages are built locally against the selected real references:
 
 ```powershell
-./scripts/New-PrototypePackage.ps1 -BuildNumber 0
+./scripts/New-Package.ps1 -BuildNumber 0
 ```
 
 VERSION supplies major/minor components; the build number supplies patch (CI uses
 its run number). The command requires committed source, runs the build/checks, and
-writes an inspected ZIP with an adjacent inspection record under `artifacts/package/`.
+writes an inspected public ZIP under `artifacts/package/`. Build and inspection
+records are kept alongside it, outside the ZIP.
 Its filename includes version, source revision, and a hash prefix. See
 [local development](docs/LOCAL-DEVELOPMENT.md) for prerequisites and
 [owner procedure](docs/OWNER-PROCEDURE.md) for private evaluation.

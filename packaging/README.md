@@ -8,7 +8,7 @@ Smart Queue clears the clutter from your Replicator queue, showing the products 
 - **Click what you mean.** Left-click selects the displayed recipe; right-click cancels that request.
 - **Keep crafting as usual.** Crafting order, material returns, countdown, and progress follow the game's normal rules.
 
-Gears you explicitly request still appear. Gears made along the way to an assembler stay out of sight. Everything fits into the familiar 14-slot strip.
+Gears you explicitly request still appear. Gears made along the way to an assembler stay out of sight. Your first 14 requests appear in the familiar strip; the rest stay queued.
 
 ## Installation
 

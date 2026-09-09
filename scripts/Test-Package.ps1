@@ -8,19 +8,18 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $repo = Split-Path $PSScriptRoot -Parent
 $build = Get-Content -LiteralPath (Join-Path $BuildDirectory 'build.json') -Raw | ConvertFrom-Json
-if ($build.source.dirty -or $build.source.changes.Count -ne 0) { throw 'Handoff requires a clean source build.' }
+if ($build.source.dirty -or $build.source.changes.Count -ne 0) { throw 'Release packaging requires a clean source build.' }
 $files = [ordered]@{
     'README.md' = 'packaging/README.md'
-    'OWNER-PROCEDURE.md' = 'docs/OWNER-PROCEDURE.md'
     'LICENSE' = 'LICENSE'
     'icon.png' = 'packaging/icon.png'
 }
-$expected = @($files.Keys) + @('manifest.json', 'build.json', 'BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll')
+$expected = @($files.Keys) + @('manifest.json', 'BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll')
 $zip = [IO.Compression.ZipFile]::OpenRead((Resolve-Path -LiteralPath $Path).Path)
 try {
     if ($zip.Entries.Count -ne $expected.Count -or
         (Compare-Object -ReferenceObject $expected -DifferenceObject @($zip.Entries.FullName) -CaseSensitive)) {
-        throw 'Package entries differ from the handoff allowlist.'
+        throw 'Package entries differ from the public release allowlist.'
     }
     $hashes = [ordered]@{}
     foreach ($entry in $zip.Entries) {
@@ -36,8 +35,7 @@ try {
             throw "Package/source identity mismatch: $name"
         }
     }
-    if ($hashes['build.json'] -ne (Get-FileHash -LiteralPath (Join-Path $BuildDirectory 'build.json')).Hash -or
-        $hashes['BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll'] -ne $build.output.sha256 -or
+    if ($hashes['BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll'] -ne $build.output.sha256 -or
         $build.output.sha256 -ne (Get-FileHash -LiteralPath (Join-Path $BuildDirectory 'DSPSmartQueue.dll')).Hash) {
         throw 'Package DLL or build evidence differs from the verified build.'
     }
@@ -79,6 +77,7 @@ try {
         version = $build.version
         revision = $build.source.revision
         dllSha256 = $build.output.sha256
+        buildEvidenceSha256 = (Get-FileHash -LiteralPath (Join-Path $BuildDirectory 'build.json')).Hash
         entries = $hashes
     }
 } finally { $zip.Dispose() }

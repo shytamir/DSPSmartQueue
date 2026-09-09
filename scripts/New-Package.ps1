@@ -5,23 +5,21 @@ $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 $output = Join-Path $repo 'artifacts/package'
 New-Item -ItemType Directory -Force $output | Out-Null
-$temp = Join-Path $output 'prototype.pending.zip'
+$temp = Join-Path $output 'package.pending.zip'
 try {
     if (Test-Path -LiteralPath $temp) { Remove-Item -LiteralPath $temp }
     & "$PSScriptRoot/Build-Local.ps1" -ManagedPath $ManagedPath -DependencyPath $DependencyPath -BuildNumber $BuildNumber
     $buildDirectory = Join-Path $repo 'artifacts/build'
     $build = Get-Content -LiteralPath (Join-Path $buildDirectory 'build.json') -Raw | ConvertFrom-Json
-    if ($build.source.dirty) { throw 'Commit source and documentation before producing an owner handoff.' }
+    if ($build.source.dirty) { throw 'Commit source and documentation before producing an release package.' }
     $manifest = Get-Content (Join-Path $repo 'packaging/manifest.json') -Raw | ConvertFrom-Json
     $manifest.version_number = $build.version
     $zip = [IO.Compression.ZipFile]::Open($temp, [IO.Compression.ZipArchiveMode]::Create)
     try {
         $files = [ordered]@{
             'README.md' = 'packaging/README.md'
-            'OWNER-PROCEDURE.md' = 'docs/OWNER-PROCEDURE.md'
             'LICENSE' = 'LICENSE'
             'icon.png' = 'packaging/icon.png'
-            'build.json' = 'artifacts/build/build.json'
             'BepInEx/plugins/DSPSmartQueue/DSPSmartQueue.dll' = 'artifacts/build/DSPSmartQueue.dll'
         }
         foreach ($name in $files.Keys) {
@@ -30,14 +28,15 @@ try {
         $writer = [IO.StreamWriter]::new($zip.CreateEntry('manifest.json').Open(), [Text.UTF8Encoding]::new($false))
         try { $writer.Write(($manifest | ConvertTo-Json -Depth 3)) } finally { $writer.Dispose() }
     } finally { $zip.Dispose() }
-    $inspection = & "$PSScriptRoot/Test-PrototypePackage.ps1" -Path $temp -BuildDirectory $buildDirectory
+    $inspection = & "$PSScriptRoot/Test-Package.ps1" -Path $temp -BuildDirectory $buildDirectory
     $name = "DSPSmartQueue-$($build.version)-$($build.source.revision.Substring(0,12))-$($inspection.sha256.Substring(0,12)).zip"
     $destination = Join-Path $output $name
     $inspection.package = $name
     $inspection | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath "$temp.json" -Encoding utf8NoBOM
-    Move-Item -LiteralPath $temp -Destination $destination -Force
+    Copy-Item -LiteralPath (Join-Path $buildDirectory 'build.json') -Destination "$destination.build.json" -Force
     Move-Item -LiteralPath "$temp.json" -Destination "$destination.inspection.json" -Force
-    Write-Host "Inspected private handoff: $destination"
+    Move-Item -LiteralPath $temp -Destination $destination -Force
+    Write-Host "Inspected release package: $destination"
     $destination
 } finally {
     foreach ($file in @($temp, "$temp.json")) {

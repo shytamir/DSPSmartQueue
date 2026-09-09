@@ -11,58 +11,30 @@ instructions take precedence.
 
 ## Current phase
 
-The two-epic, seven-story prototype delivery is complete. The owner accepted the
-identified handoff after passing all live observations and cleanup. No planned
-stories remain open. The owner runtime-validated version 0.9.0 with the final icon
-and approved first publication after the final review. The publishing namespace
-is DSPSmartQueue; the owner is creating that team. Publication has not occurred.
+The two-epic, seven-story prototype delivery is complete and owner accepted.
+The first public release is 1.0.0, under DSPSmartQueue-DSPSmartQueue. The owner
+will publish it. Publication has not been reported.
 
-Repository scaffolding and local preparation are complete. The
-[preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
-checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
-The adapter compiles and its offline binding, mapping, interaction, and lifecycle/
-recovery checks passed for the handoff build. Owner-reported live feasibility
-validation passed. The GitHub workflow runs offline logic/binding fixtures; private
-package creation uses the local real-reference build. Installation and live
-observations were performed by the owner, not the agent.
+The owner runtime-validated the final-icon 0.9.0 candidate. The subsequent 1.0.0
+promotion changed version identity only. Public-package correction and verification
+are in progress; no new runtime behavior is being introduced.
 
 ## Release readiness
 
-Pre-release review on 2026-09-09 covered runtime boundaries, build identity,
-package contents, approved player-facing copy, and CI. VERSION is 0.9 (local
-package version 0.9.0; a supplied build number replaces the patch component).
+Earlier package checks incorrectly retained the private handoff's owner procedure
+and build evidence. Those ZIPs, including the initial 1.0.0 ZIP from `fa2cd58`, are
+superseded for publication. The old instruction to publish 0.9.0 is withdrawn.
 
-- The approved package README and manifest tagline were applied.
-- The pinned checkout action was updated to Node 24 to resolve the hosted Node 20
-  deprecation warning; stale repository overview wording was removed.
-- Clean-checkout real-reference compilation passed with zero warnings/errors,
-  along with offline logic and real-metadata checks and ZIP inspection. Package
-  probes rejected extra/missing/duplicate entries, altered DLL/icon/version, and
-  dirty build evidence. Runtime source, tests, and build scripts were unchanged
-  from the accepted prototype.
-- The owner-supplied icon replaced the placeholder. Its PNG format and 256x256
-  dimensions were verified; the original file was copied unchanged.
-- The management pass removed obsolete hook-validation wording. PROJECT.md remains
-  the sole current status record; dated prototype evidence and acceptance retain
-  their original scope. The owner subsequently approved first publication.
+The public ZIP contract is exactly manifest, player README, icon, license, and
+plugin DLL. Build/inspection JSON stays alongside the ZIP for maintainers. The
+owner procedure and all management documents remain in the repository. Publication
+uses only the corrected ZIP identified here after verification.
 
-The original acceptance below belongs to the 0.1.0 prototype. The owner separately
-reported another successful runtime validation for the final-icon 0.9.0 candidate
-on 2026-09-09. Final archive inspection passed; the declared BepInEx dependency was
-available, the repository was public, and hosted checks passed for the same source
-([run 34311531714](https://github.com/shytamir/DSPSmartQueue/actions/runs/34311531714)).
-
-Publish the existing validated ZIP, without rebuilding:
-
-- Namespace/package/version: `DSPSmartQueue-DSPSmartQueue-0.9.0`.
-- ZIP: `artifacts/package/DSPSmartQueue-0.9.0-d63cba1e8097-9278B9FD1344.zip`.
-- Source: `d63cba1e809754f2c6de2483b1536263d9ede54f`.
-- ZIP SHA256: `9278B9FD1344E9E32C88F60799BB59E92239D266F2A09031CEC3768C49D1FDB6`.
-- DLL SHA256: `282CEBD93269F95F3512F1CD2ADB7B6A71C78891A135F81DB9424757305922C5`.
-
-The enclosed build.json records automated build-time evidence; its runtimeValidated
-flag is false because the build command never runs the game. The later owner
-acceptance is recorded here without rewriting the validated archive.
+The owner supplied the icon and approved the README/tagline. The README's viewport
+wording was corrected to state that requests beyond the first 14 remain queued.
+Release scripts and their regression checks enforce the public package boundary.
+The GitHub workflow runs offline checks; real-reference compilation and ZIP checks
+run locally. No agent-installed or agent-run gameplay is claimed.
 
 ## Work tracking
 
@@ -86,9 +58,9 @@ complete. Activation identifies the next work; it is not completion evidence.
 Plugin identity is defined in `src/DSPSmartQueue/Plugin.cs`; target framework and
 initial binding verification are recorded in SQ-1.1's evidence.
 
-## Owner handoff
+## Historical prototype handoff
 
-- Procedure: [owner feasibility procedure](OWNER-PROCEDURE.md), also enclosed in the ZIP.
+- Procedure: [owner feasibility procedure](OWNER-PROCEDURE.md), enclosed in that historical ZIP only.
 - Local artifact: `artifacts/package/DSPSmartQueue-0.1.0-639767658c41-B257B3F2B504.zip`.
 - Inspection record: the adjacent `DSPSmartQueue-0.1.0-639767658c41-B257B3F2B504.zip.inspection.json`.
 - Version: `0.1.0`; clean source revision: `639767658c417a676626b05c4c8ac2757e9c3809`.
@@ -123,7 +95,6 @@ is linked under SQ-2.2 and retained with the package.
 
 ## Delivery boundary
 
-Agents perform repository implementation, static inspection, and offline checks.
-The owner approved first Thunderstore publication of the identified 0.9.0 ZIP
-under the DSPSmartQueue team. Team creation and upload are outstanding. No public
-release URL or publication success has been recorded.
+The owner will publish the corrected 1.0.0 package. Agents perform repository
+work and offline verification; installation and gameplay remain owner actions.
+No public release URL or publication success has been recorded.
