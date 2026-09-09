@@ -44,3 +44,25 @@ commands and target selection are defined in the roadmap's implementation storie
 The initial install encountered sandbox NuGet TLS authentication failure; the same
 command succeeded in the desktop context. No certificate validation bypass was
 used. Normal activation and static inspection subsequently succeeded in the sandbox.
+
+## Build and check the foundation
+
+```powershell
+./scripts/Build-Local.ps1
+```
+
+The command uses the saved local reference paths. Without local-tool initialization,
+provide `-ManagedPath '<game Managed directory>'` and
+`-DependencyPath '<offline BepInEx and Harmony DLL directory>'` explicitly.
+`-BuildNumber 0` is the local default; VERSION supplies major/minor components.
+
+Use .NET SDK 10 with its runtime installed (verified with 10.0.302). The plugin
+targets net472/C# 7.3; the metadata-only check executable targets net10.0. First
+restore requires NuGet access for pinned framework references and MetadataLoadContext.
+If the desktop sandbox denies SDK discovery or NuGet authentication, run the same
+command in the approved desktop context; do not bypass certificate checks.
+
+Output is `artifacts/build/DSPSmartQueue.dll`. The command rejects missing
+references, unexpected output files, or failed signature/metadata checks. It never
+installs or runs the plugin. See [SQ-1.1 evidence](implementation/SQ-1.1.md) for the
+recorded verification; consult PROJECT.md for current delivery readiness.

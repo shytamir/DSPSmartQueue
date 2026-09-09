@@ -12,27 +12,26 @@ instructions take precedence.
 ## Current phase
 
 Planning is complete. The two-epic, seven-story roadmap is approved for the first
-prototype delivery. **SQ-1.1 is active and ready to implement.** Implementation
-begins in the next work session after this planning update is published to main;
-this update does not perform implementation.
+prototype delivery. SQ-1.1 has met its definition of done. Work stopped at that
+story's boundary; SQ-1.2 is the next planned work and has not been started.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
 checks; [local development](LOCAL-DEVELOPMENT.md) documents reusable commands.
-No plugin implementation, plugin compilation, or live feasibility validation has
-been completed. The GitHub workflow produces an incomplete scaffold artifact,
-not an installable package.
+The minimal foundation compiles and its offline binding checks pass. No queue
+adapter behavior or live feasibility validation has been completed. The GitHub
+workflow still produces an incomplete scaffold artifact, not an installable package.
 
 ## Work tracking
 
 | Epic | Status |
 | --- | --- |
-| SQ-1: Safe integrated queue adapter | Active; implementation not started |
+| SQ-1: Safe integrated queue adapter | In progress; foundation complete |
 | SQ-2: Identified prototype delivery and feasibility | Planned |
 
 | Story | Status | Completion evidence |
 | --- | --- | --- |
-| [SQ-1.1](management/ROADMAP.md#sq-11--minimal-plugin-foundation) | Active; ready to implement | None yet |
+| [SQ-1.1](management/ROADMAP.md#sq-11--minimal-plugin-foundation) | Complete | [Compilation, metadata and negative checks](implementation/SQ-1.1.md) |
 | [SQ-1.2](management/ROADMAP.md#sq-12--identify-visible-requests) | Planned | None yet |
 | [SQ-1.3](management/ROADMAP.md#sq-13--present-and-operate-the-same-task) | Planned | None yet |
 | [SQ-1.4](management/ROADMAP.md#sq-14--recover-and-restore-native-consistency) | Planned | None yet |
@@ -42,8 +41,8 @@ not an installable package.
 
 Record concise evidence against each story's definition of done before marking it
 complete. Activation identifies the next work; it is not completion evidence.
-Choose the plugin identity, target framework, and exact binding signatures within
-SQ-1.1. No further planning document is required to begin that bounded story.
+Identity, target framework, and checked signatures are recorded in SQ-1.1's evidence.
+No further planning document is required before the next bounded story.
 
 ## Delivery boundary
 

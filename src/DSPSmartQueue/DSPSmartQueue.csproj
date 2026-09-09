@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>DSPSmartQueue</AssemblyName>
+    <RootNamespace>DSPSmartQueue</RootNamespace>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <DebugType>none</DebugType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>../../artifacts/build/</OutputPath>
+    <GeneratedVersionSource>../../artifacts/generated/PluginVersion.g.cs</GeneratedVersionSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <Compile Include="$(GeneratedVersionSource)" Link="PluginVersion.g.cs" />
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)/Assembly-CSharp.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedPath)/UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)/UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(ManagedPath)/UnityEngine.UI.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(ManagedPath)/UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(DependencyPath)/BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(DependencyPath)/0Harmony.dll" Private="false" />
+  </ItemGroup>
+  <Target Name="CheckLocalInputs" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(ManagedPath)' == '' or '$(DependencyPath)' == ''" Text="Use scripts/Build-Local.ps1 or supply ManagedPath and DependencyPath." />
+    <Error Condition="'%(Reference.HintPath)' != '' and !Exists('%(Reference.HintPath)')" Text="Missing reference: %(Reference.HintPath). Configure the selected managed/offline dependency directories." />
+    <Error Condition="!Exists('$(GeneratedVersionSource)')" Text="Use scripts/Build-Local.ps1 to generate the version from VERSION." />
+  </Target>
+</Project>
