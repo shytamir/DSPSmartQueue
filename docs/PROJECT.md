@@ -13,7 +13,8 @@ instructions take precedence.
 
 The two-epic, seven-story prototype delivery is complete. The owner accepted the
 identified handoff after passing all live observations and cleanup. No planned
-stories remain open.
+stories remain open. Version 0.9 is the release candidate following the owner's
+pre-release instruction. The replacement icon is pending from the owner.
 
 Repository scaffolding and local preparation are complete. The
 [preparation evidence](REFERENCE-BASELINE.md) records static inspection and toolkit
@@ -23,6 +24,29 @@ recovery checks passed for the handoff build. Owner-reported live feasibility
 validation passed. The GitHub workflow runs offline logic/binding fixtures; private
 package creation uses the local real-reference build. Installation and live
 observations were performed by the owner, not the agent.
+
+## Release candidate
+
+Pre-release review on 2026-09-09 covered runtime boundaries, build identity,
+package contents, approved player-facing copy, and CI. VERSION is 0.9 (local
+package version 0.9.0; a supplied build number replaces the patch component).
+
+- The approved package README and manifest tagline were applied.
+- The pinned checkout action was updated to Node 24 to resolve the hosted Node 20
+  deprecation warning; stale repository overview wording was removed.
+- Clean-checkout real-reference compilation passed with zero warnings/errors,
+  along with offline logic and real-metadata checks and ZIP inspection. Package
+  probes rejected extra/missing/duplicate entries, altered DLL/icon/version, and
+  dirty build evidence. Runtime source, tests, and build scripts were unchanged
+  from the accepted prototype.
+- The existing icon remains unchanged and is not the owner's final release artwork.
+  Its replacement and release publication are outstanding; no publication was
+  performed or authorized by release-candidate designation.
+
+The acceptance below belongs to the identified 0.1.0 prototype. It is preserved
+as evidence rather than relabeled as a live test of a newly versioned DLL. Each
+candidate package has its own source/DLL/ZIP identity in the adjacent inspection
+record and enclosed build.json.
 
 ## Work tracking
 

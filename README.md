@@ -39,9 +39,9 @@ slots, separate panels, and mod-owned save data are outside scope.
 - [Local development](docs/LOCAL-DEVELOPMENT.md): toolkit activation and cached inspection.
 - [Reference baseline](docs/REFERENCE-BASELINE.md): static findings for planning.
 
-The intended first delivery is a prototype DLL and a concise owner feasibility
-procedure. Agents perform compilation and deterministic checks; the owner performs
-installation and in-game validation. Feasibility and publication remain separate.
+For live evaluation, agents provide compilation and deterministic checks; the
+owner performs installation and in-game validation using the owner procedure.
+Consult PROJECT.md for acceptance and release readiness.
 
 ## Versioning and package artifacts
 
