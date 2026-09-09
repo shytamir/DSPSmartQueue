@@ -23,7 +23,7 @@ jobs:
         shell: pwsh
         run: |
           if ((git rev-parse HEAD).Trim() -ne $env:GITHUB_SHA) { throw 'Unexpected source revision.' }
-          ./scripts/New-Package.ps1 -Hosted -BuildNumber 0
+          ./scripts/New-Package.ps1 -Hosted -BuildNumber 1
           $packages = @(Get-ChildItem artifacts/package -Filter '*.zip')
           if ($packages.Count -ne 1) { throw 'Expected exactly one release ZIP.' }
           $package = $packages[0].FullName

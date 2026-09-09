@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using BepInEx;
 using HarmonyLib;
 
@@ -16,25 +15,14 @@ namespace DSPSmartQueue
         {
             try
             {
-                var errors = BindingChecks.Validate(
-                    Assembly.Load("Assembly-CSharp"), Assembly.Load("UnityEngine.UI"),
-                    Assembly.Load("UnityEngine.CoreModule"), typeof(int).Assembly);
-                if (errors.Count != 0)
-                {
-                    Logger.LogError("Incompatible queue UI; plugin disabled: " + string.Join("; ", errors));
-                    enabled = false;
-                    return;
-                }
-
                 harmony = new Harmony(PluginGuid);
                 QueueHooks.Start(harmony, Logger);
                 Logger.LogInfo("Queue presentation and guarded native input enabled.");
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.LogError("Unable to validate queue bindings; plugin disabled: " + exception);
                 Stop();
-                enabled = false;
+                throw;
             }
         }
 

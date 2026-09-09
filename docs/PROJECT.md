@@ -11,43 +11,31 @@ instructions take precedence.
 
 ## Current phase
 
-The two-epic, seven-story prototype delivery is complete and owner accepted.
-The first public release is 1.0.0, under DSPSmartQueue-DSPSmartQueue. The owner
-will publish it. Publication has not been reported.
+The two-epic, seven-story prototype delivery was owner accepted. Thunderstore
+received 1.0.0 but rejected its community listing. The owner relayed moderator
+feedback that the runtime `BindingChecks` class triggered their filters and that
+binding failures should surface as errors.
 
-The owner runtime-validated the final-icon 0.9.0 candidate. The subsequent 1.0.0
-promotion changed version identity only. The public-package correction is verified;
-its DLL is byte-identical to the preceding 1.0.0 build.
+The 1.0.1 correction removes that startup gate and its fixtures. Patch installation
+failures are rethrown after cleanup. Queue presentation, click identity, and recovery
+behavior are unchanged. Offline hook metadata checks remain in the test executable,
+which is not shipped. The prior owner acceptance is historical; no new runtime
+acceptance or moderator approval has been reported for this correction.
 
 ## Release readiness
 
-Earlier package checks incorrectly retained the private handoff's owner procedure
-and build evidence. Those ZIPs, including the initial 1.0.0 ZIP from `fa2cd58`, are
-superseded for publication. The old instruction to publish 0.9.0 is withdrawn.
+Local validation of 1.0.1 passed: zero-warning hosted and real-reference builds,
+offline queue/hook/identity checks, and byte-identical DLLs across both builds.
+GitHub Actions artifact verification is pending. Delivery remains a GitHub Actions
+artifact; agents do not install the plugin, run the game, or publish to Thunderstore.
+The public ZIP contains exactly manifest, player README, icon, license, and plugin
+DLL. Build evidence is uploaded separately. Shims and internal documents are excluded.
 
-The public ZIP contract is exactly manifest, player README, icon, license, and
-plugin DLL. Build/inspection JSON is a separate maintainer artifact. Owner
-procedures, shims, dependencies, and management documents are excluded.
-
-The owner requires GitHub Actions to build and validate the publication ZIP.
-Local ZIPs are no longer publication handoffs. The workflow builds 1.0.0 using
-pinned public dependencies and minimal compile-only game/UI declarations, runs
-logic/metadata checks and package rejection tests, and uploads the package and
-evidence separately. [GitHub Actions run 34313606162](https://github.com/shytamir/DSPSmartQueue/actions/runs/34313606162)
-passed and produced the validated `DSPSmartQueue-1.0.0` artifact. Its release ZIP is
-`DSPSmartQueue-1.0.0-82c74e7a8045-644D0A72FEB9.zip`, SHA256
-`644D0A72FEB93AAA907F93EDBE388F1B739B6FB156D8B9552CE201C67925592F`.
-The downloaded CI ZIP passed independent inspection and all nine rejection tests
-from a clean matching checkout. Its DLL matched the real-reference build below
-and passed metadata checks against the actual game assemblies. Download this
-artifact from the run; extract the contained release ZIP for Thunderstore upload.
-
-On 2026-09-09, the hosted-reference and real-reference paths both compiled with
-zero warnings/errors and passed their offline checks. Their DLLs were byte-identical
-(SHA256 `83EA785969DBF326EDF45085BF61D193CD82CD75778F927B800686066D2B2E7A`),
-also matching the preceding 1.0.0 DLL. The hosted DLL additionally passed hook and
-identity checks against real game metadata. Runtime source and public copy were
-unchanged. This does not claim additional gameplay validation or publication.
+The rejected 1.0.0 submission was byte-identical to the inspected artifact from
+[run 34313606162](https://github.com/shytamir/DSPSmartQueue/actions/runs/34313606162)
+(SHA256 `644D0A72FEB93AAA907F93EDBE388F1B739B6FB156D8B9552CE201C67925592F`).
+Its successful format checks did not establish Thunderstore moderation acceptance.
+It is superseded by this correction and should not be resubmitted unchanged.
 
 ## Work tracking
 
@@ -108,6 +96,6 @@ is linked under SQ-2.2 and retained with the package.
 
 ## Delivery boundary
 
-The owner will download and publish the validated GitHub Actions 1.0.0 package. Agents perform repository
-work and offline verification; installation and gameplay remain owner actions.
-No public release URL or publication success has been recorded.
+The owner handles runtime validation and resubmission of the corrected CI artifact.
+The [Thunderstore listing](https://thunderstore.io/c/dyson-sphere-program/p/DSPSmartQueue/DSPSmartQueue/)
+was rejected; approval has not been reported.

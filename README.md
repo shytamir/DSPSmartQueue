@@ -51,7 +51,7 @@ Download the `DSPSmartQueue-<version>` artifact from a successful run and extrac
 its contained release ZIP for Thunderstore. The separate `build-evidence` artifact
 is for maintainers and is not part of the public package.
 
-VERSION supplies major/minor components; the release workflow uses patch zero.
+VERSION supplies major/minor components; the release workflow specifies the patch component with BuildNumber.
 The ZIP filename includes version, source revision, and a hash prefix. Hosted builds
 use pinned public dependencies and minimal compile-only game/UI declarations;
 none of those references are shipped. See [local development](docs/LOCAL-DEVELOPMENT.md)

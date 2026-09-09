@@ -61,8 +61,8 @@ to SQ-1.3 and SQ-1.4.
   Unity, BepInEx, and Harmony references.
 - Missing references fail with an actionable message and nonzero exit status.
 - Plugin identity and target selection are explicit in the implementation.
-- Required members have exact signature checks suitable for initialization;
-  missing/mismatched bindings report incompatibility without applying UI changes.
+- Required hook signatures are checked offline against the selected references.
+  Runtime patch installation failures propagate after owned-hook cleanup.
 - The deliverable contains no copied game/runtime dependency assemblies.
 - No installed plugin execution is claimed as evidence of this story.
 

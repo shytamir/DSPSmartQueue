@@ -60,6 +60,6 @@ paths only. Commit and push when requested; do not force-push. For sandbox owner
 errors, use per-command `git -c safe.directory=<repo>` rather than global changes.
 
 `VERSION` contains manually edited `MAJOR` and `MINOR` integers; the release workflow
-uses patch zero. Hosted references are compile-only and must never enter a package.
+specifies the patch component with BuildNumber. Hosted references are compile-only and must never enter a package.
 Consult `docs/PROJECT.md` for
 package readiness. Repository pushes do not authorize release publication.

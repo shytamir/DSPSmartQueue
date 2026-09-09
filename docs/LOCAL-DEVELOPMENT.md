@@ -76,7 +76,7 @@ verification evidence is linked from PROJECT.md.
 
 ## Hosted build and reference validation
 
-GitHub Actions runs `./scripts/New-Package.ps1 -Hosted -BuildNumber 0`, then
+GitHub Actions runs `./scripts/New-Package.ps1 -Hosted -BuildNumber 1`, then
 `./tests/PackageChecks.ps1` against the resulting ZIP before uploading it.
 `Initialize-CIReferences.ps1` downloads checksum-pinned BepInEx 5.4.17 and public
 Unity 2022.3.62 modules. `build/References` supplies only the game and Unity UI
@@ -99,7 +99,7 @@ dotnet run --project tests/FoundationChecks -c Release -- --logic-only
 Download `DSPSmartQueue-<version>` from the successful GitHub Actions run identified
 in PROJECT.md. Extract the release ZIP from GitHub's artifact download wrapper;
 that inner ZIP is the Thunderstore upload. Keep the separate `build-evidence`
-artifact for verification. The workflow uses VERSION major/minor and patch zero.
+artifact for verification. The workflow uses VERSION major/minor and the workflow-specified BuildNumber patch.
 
 For local development, `./scripts/New-Package.ps1` builds against real references;
 `-Hosted` exercises the CI path. Both require a clean committed checkout and inspect
