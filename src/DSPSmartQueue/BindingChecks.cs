@@ -26,6 +26,10 @@ namespace DSPSmartQueue
             RequireMethod(errors, window, "SetBufferData", voidType, true, Type.EmptyTypes);
             RequireMethod(errors, window, "OnQueueMouseDown", voidType, true,
                 new[] { RequiredType(ui, "UnityEngine.EventSystems.BaseEventData") });
+            RequireMethod(errors, window, "RefreshQueueIcons", voidType, true, Type.EmptyTypes);
+            RequireMethod(errors, window, "TestMouseQueueIndex", voidType, true, Type.EmptyTypes);
+            RequireMethod(errors, window, "ActiveQueueText", voidType, true, new[] { integer });
+            RequireMethod(errors, window, "DeactiveQueueText", voidType, true, new[] { integer });
             foreach (var name in new[] { "_OnOpen", "_OnClose", "_OnFree", "_OnDestroy" })
                 RequireMethod(errors, window, name, voidType, false, Type.EmptyTypes);
 

@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using BepInEx;
+using HarmonyLib;
 
 namespace DSPSmartQueue
 {
@@ -9,6 +10,7 @@ namespace DSPSmartQueue
     {
         public const string PluginGuid = "smartqueue";
         public const string PluginName = "DSP Smart Queue";
+        private Harmony harmony;
 
         private void Awake()
         {
@@ -24,13 +26,23 @@ namespace DSPSmartQueue
                     return;
                 }
 
-                Logger.LogInfo("Queue binding signatures validated. Foundation only; no queue hooks applied.");
+                harmony = new Harmony(PluginGuid);
+                QueueHooks.Start(harmony, Logger);
+                Logger.LogInfo("Queue presentation and guarded native input enabled.");
             }
             catch (Exception exception)
             {
                 Logger.LogError("Unable to validate queue bindings; plugin disabled: " + exception);
+                if (harmony != null) harmony.UnpatchSelf();
                 enabled = false;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (harmony == null) return;
+            try { QueueHooks.Stop(harmony); }
+            catch (Exception exception) { Logger.LogError("Native queue restoration failed; input guard retained: " + exception); }
         }
     }
 }

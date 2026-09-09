@@ -63,7 +63,9 @@ If the desktop sandbox denies SDK discovery or NuGet authentication, run the sam
 command in the approved desktop context; do not bypass certificate checks.
 
 Output is `artifacts/build/DSPSmartQueue.dll`. The command rejects missing
-references, unexpected output files, or failed signature/metadata/mapping checks. It never
+references, unexpected output files, or failed signature/metadata/mapping/input checks. It never
 installs or runs the plugin. See [SQ-1.1 evidence](implementation/SQ-1.1.md) for the
 recorded foundation verification and [SQ-1.2 evidence](implementation/SQ-1.2.md)
-for mapping checks; consult PROJECT.md for current delivery readiness.
+for mapping checks. [SQ-1.3 evidence](implementation/SQ-1.3.md) describes the
+presentation/input boundary checks and their runtime limits. Consult PROJECT.md
+for current delivery readiness.

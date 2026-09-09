@@ -3,6 +3,7 @@ using DSPSmartQueue;
 
 if (args.Length != 3) throw new ArgumentException("Expected ManagedPath, DependencyPath, and plugin DLL path.");
 VisibleRequestsChecks.Run();
+QueueStripChecks.Run();
 var errors = new List<string>();
 BindingChecks.RequireField(errors, typeof(Fixture), "Value", typeof(int), false);
 BindingChecks.RequireMethod(errors, typeof(Fixture), "Click", typeof(void), true, new[] { typeof(int) });
@@ -48,6 +49,7 @@ var core = metadata.LoadFromAssemblyPath(Path.Combine(args[0], "mscorlib.dll"));
 var actualErrors = BindingChecks.Validate(game, ui, unity, core);
 if (actualErrors.Count != 0) throw new Exception(string.Join(Environment.NewLine, actualErrors));
 var plugin = metadata.LoadFromAssemblyPath(Path.GetFullPath(args[2]));
+HookBindingChecks.Run(game, plugin);
 var entry = plugin.GetType("DSPSmartQueue.Plugin", true)!;
 if (entry.BaseType?.FullName != "BepInEx.BaseUnityPlugin") throw new Exception("Wrong plugin base.");
 var attribute = entry.GetCustomAttributesData().Single(a => a.AttributeType.FullName == "BepInEx.BepInPlugin");
