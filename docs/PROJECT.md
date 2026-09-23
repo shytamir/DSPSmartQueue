@@ -11,6 +11,10 @@ instructions take precedence.
 
 ## Current phase
 
+Version **1.1.1** is the verified minor-version promotion for the supported game
+update. `VERSION` advances MINOR from 0 to 1; the unchanged workflow supplies
+BuildNumber 1. Runtime implementation is unchanged.
+
 The two-epic, seven-story prototype delivery was owner accepted. Thunderstore
 received 1.0.0 but rejected its community listing. The owner relayed moderator
 feedback that the runtime `BindingChecks` class triggered their filters and that
@@ -46,6 +50,37 @@ implementation records, and release artifact hashes retain their original identi
 
 ## Release readiness
 
+The 1.1.1 promotion at source revision `3e5b7bc8d7c0857f74676070d7912ee5a047146e`
+passed [CI run 35921719655](https://github.com/shytamir/DSPSmartQueue/actions/runs/35921719655):
+zero-warning compilation, offline queue/hook/identity checks, ZIP inspection, and
+all nine package rejection checks. The downloaded public artifact and separate
+build evidence were independently inspected on 2026-09-23.
+
+| Version surface | Verified value |
+| --- | --- |
+| Actions artifact | `DSPSmartQueue-1.1.1` |
+| Release ZIP version, manifest, BepInEx plugin metadata | `1.1.1` |
+| DLL assembly and file versions | `1.1.1.0` |
+| DLL product version, build and inspection evidence | `1.1.1` |
+
+The downloaded DLL is byte-identical to the zero-warning local build against the
+updated game references identified above. Offline logic and real-game hook metadata
+checks also passed for the downloaded DLL. Both evidence files identify the clean
+promotion revision; all recorded ZIP, entry, DLL, and build-evidence hashes match.
+
+- ZIP: `DSPSmartQueue-1.1.1-3e5b7bc8d7c0-6C47F962178E.zip`.
+- ZIP SHA256: `6C47F962178E8F0FE0D46760CC2E6E8AD0A7E03DA26A935C7697CFD1592BE1F4`.
+- DLL SHA256: `66C3F51EC6203A75A60488A57B198928C00666489BB2DAD242FCFD5F6DACB47E`.
+
+Download `DSPSmartQueue-1.1.1` from that run and extract its contained release ZIP.
+Delivery remains a GitHub Actions artifact; agents do not install the plugin, run
+the game, or publish to Thunderstore. The public ZIP contains exactly manifest,
+player README, icon, license, and plugin DLL. Build evidence is uploaded separately.
+Shims and internal documents are excluded. The earlier owner game-update validation
+is recorded above; these promotion checks add no new agent-run gameplay claim.
+
+## Historical 1.0.1 correction
+
 Local validation of 1.0.1 passed: zero-warning hosted and real-reference builds,
 offline queue/hook/identity checks, and byte-identical DLLs across both builds.
 [CI run 34315112469](https://github.com/shytamir/DSPSmartQueue/actions/runs/34315112469)
@@ -58,10 +93,7 @@ real-reference build. Real-game metadata checks also passed for the CI DLL.
 - ZIP SHA256: `4579573F7F9C8363432BF9B05AF22CE41BE724F39C17CC5CA941A8C5F22B8F78`.
 - DLL SHA256: `4FA5F7BF4600D41731103D61D3CC46132E26A20C9C4C7F3DBB89F49D958E5551`.
 
-Download the artifact from that run and extract its contained release ZIP. Delivery remains a GitHub Actions
-artifact; agents do not install the plugin, run the game, or publish to Thunderstore.
-The public ZIP contains exactly manifest, player README, icon, license, and plugin
-DLL. Build evidence is uploaded separately. Shims and internal documents are excluded.
+This historical artifact is superseded by the verified 1.1.1 promotion above.
 
 The rejected 1.0.0 submission was byte-identical to the inspected artifact from
 [run 34313606162](https://github.com/shytamir/DSPSmartQueue/actions/runs/34313606162)
@@ -129,6 +161,6 @@ is linked under SQ-2.2 and retained with the package.
 ## Delivery boundary
 
 The owner has completed the game-update validation recorded above and handles
-resubmission of the corrected CI artifact.
+publication of the promoted CI artifact.
 The [Thunderstore listing](https://thunderstore.io/c/dyson-sphere-program/p/DSPSmartQueue/DSPSmartQueue/)
 was rejected; approval has not been reported.
