@@ -1,6 +1,8 @@
 # Local preparation
 
 For current status and active work, see the authoritative [PROJECT.md](PROJECT.md).
+The [current game compatibility record](PROJECT.md#current-game-compatibility)
+identifies the supported game version, updated reference hashes, and owner validation.
 
 Run from the repository using PowerShell 7. First initialization needs two local
 directories; these are saved only under ignored `artifacts/.runtime-tools/`:

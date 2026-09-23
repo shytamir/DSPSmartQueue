@@ -5,7 +5,8 @@ Thunderstore package. It makes the Replicator queue easier to control by showing
 the products the player requested and hiding automatically queued intermediates.
 
 See [PROJECT.md](docs/PROJECT.md), the authoritative record of project status,
-active work, and delivery readiness.
+active work, and delivery readiness. The [current game compatibility record](docs/PROJECT.md#current-game-compatibility)
+identifies the supported game version and owner validation.
 
 ## Intended behavior
 

@@ -10,6 +10,8 @@ Smart Queue clears the clutter from your Replicator queue, showing the products 
 
 Gears you explicitly request still appear. Gears made along the way to an assembler stay out of sight. Your first 14 requests appear in the familiar strip; the rest stay queued.
 
+See the [current game compatibility record](https://github.com/shytamir/DSPSmartQueue/blob/main/docs/PROJECT.md#current-game-compatibility) for the supported game version and completed owner validation.
+
 ## Installation
 
 **Thunderstore Mod Manager:** Select Dyson Sphere Program and your profile, install DSP Smart Queue with its dependencies, then launch the game modded.

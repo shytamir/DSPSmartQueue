@@ -19,8 +19,30 @@ binding failures should surface as errors.
 The 1.0.1 correction removes that startup gate and its fixtures. Patch installation
 failures are rethrown after cleanup. Queue presentation, click identity, and recovery
 behavior are unchanged. Offline hook metadata checks remain in the test executable,
-which is not shipped. The prior owner acceptance is historical; no new runtime
-acceptance or moderator approval has been reported for this correction.
+which is not shipped. The owner has since confirmed that all existing validations
+pass after the game update, as recorded below. Moderator approval has not been
+reported.
+
+## Current game compatibility
+
+Dyson Sphere Program **0.10.35.29057** is fully supported by the existing plugin
+without code changes. On 2026-09-23, the owner reported rerunning all existing
+validations after the game update and confirmed that everything works as is.
+This records owner validation, including runtime acceptance; no agent-run gameplay
+or new automated test run is claimed by this documentation update.
+
+The installed game's `Updates/Versions.txt` identifies `0.10.35.29057`, dated
+2026-09-23; static inspection of `GameConfig` confirms the `0.10.35` default.
+Read-only hashing on the same date identified the updated managed references:
+
+| Reference | SHA256 |
+| --- | --- |
+| `Assembly-CSharp.dll` | `e75d3fe4b6a9ca822766189f826ba3a8348dfb7e301aa37ff6779db29a83fd8d` |
+| `UnityEngine.UI.dll` | `c5acc25ebd597b586d323af506fb88e760322550940f1a3b0ea4fc8143fcb26c` |
+
+The other six references in the saved local preparation baseline are unchanged.
+The [2026-09-09 preparation evidence](REFERENCE-BASELINE.md), prototype procedure,
+implementation records, and release artifact hashes retain their original identities.
 
 ## Release readiness
 
@@ -106,6 +128,7 @@ is linked under SQ-2.2 and retained with the package.
 
 ## Delivery boundary
 
-The owner handles runtime validation and resubmission of the corrected CI artifact.
+The owner has completed the game-update validation recorded above and handles
+resubmission of the corrected CI artifact.
 The [Thunderstore listing](https://thunderstore.io/c/dyson-sphere-program/p/DSPSmartQueue/DSPSmartQueue/)
 was rejected; approval has not been reported.
