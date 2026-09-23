@@ -120,7 +120,7 @@ Only the ZIP is for publication. Its adjacent `.build.json` and `.inspection.jso
 retain source/reference identity, verification results, and hashes for maintainers.
 Owner procedures, management docs, references, and caches are excluded from the
 ZIP. `package.pending.zip` is temporary. Previous artifacts are retained unchanged;
-PROJECT.md identifies which release is suitable for publication.
+PROJECT.md identifies the published release and its verified build evidence.
 
 Inspect and exercise the package regression checks using the matching checkout
 and the verified DLL/build.json directory:

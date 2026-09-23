@@ -1,7 +1,8 @@
 # DSPSmartQueue
 
-A minimal BepInEx mod for Dyson Sphere Program, intended for distribution as a
-Thunderstore package. It makes the Replicator queue easier to control by showing
+A minimal BepInEx mod for Dyson Sphere Program, distributed as a
+[Thunderstore package](https://thunderstore.io/c/dyson-sphere-program/p/DSPSmartQueue/DSPSmartQueue/).
+It makes the Replicator queue easier to control by showing
 the products the player requested and hiding automatically queued intermediates.
 
 See [PROJECT.md](docs/PROJECT.md), the authoritative record of project status,
@@ -35,7 +36,7 @@ slots, separate panels, and mod-owned save data are outside scope.
 ## Project records
 
 - [Kickoff](docs/KICKOFF.md): complete intended behavior and prototype acceptance contract.
-- [Roadmap](docs/management/ROADMAP.md): epic/story scope and completion criteria.
+- [Roadmap](docs/management/ROADMAP.md): planning entry point and archived work definitions.
 - [Agent instructions](AGENTS.md): repository working conventions.
 - [Local development](docs/LOCAL-DEVELOPMENT.md): toolkit activation and cached inspection.
 - [Reference baseline](docs/REFERENCE-BASELINE.md): static findings for planning.

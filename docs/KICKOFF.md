@@ -100,4 +100,4 @@ A failed observation returns only the affected scope for correction and recheck.
 
 Preserve native behavior, verify exact game surfaces, test the new logic, and keep cleanup explicit. Use owner observations to resolve live presentation and interaction questions. Introduce additional architecture or tooling only when the implementation requires it.
 
-The technical basis was static inspection of `ForgeTask`, `MechaForge`, and `UIReplicatorWindow`. Delivery scope and completion criteria are defined in the [roadmap](management/ROADMAP.md).
+The technical basis was static inspection of `ForgeTask`, `MechaForge`, and `UIReplicatorWindow`. Prototype delivery scope and completion criteria are preserved in the [archived roadmap](archive/2026-09-24-prototype-roadmap.md).
